@@ -1,0 +1,7 @@
+/* Scoped workbench refinements; approved database and compound styling is untouched. */
+.workbench-heading{min-width:0}.workbench-description{font-size:15px;line-height:1.65;color:var(--muted);margin-top:8px;max-width:850px}
+.page-header{align-items:flex-start}.selection-notice{font-size:14px;line-height:1.6;padding:11px 15px;background:#e8f2f7;border-left:3px solid #42879e;border-radius:5px;margin:0 0 18px}
+.side-bottom summary{font-size:12px}.condition-summary{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0;color:var(--muted);font-size:14px}.condition-summary b{color:var(--ink);font-weight:600}
+#evidence-tools #reference-body td{font-size:14px;line-height:1.6}#evidence-tools #reference-body td>strong{display:block}#evidence-tools .section-head h2{display:none}
+#evidence-tools #analysis-output .section-head h3{font-size:18px}#evidence-tools #download-links{margin:16px 0;flex-wrap:wrap}#evidence-tools #download-links a{font-size:13px}
+.structure-hit-actions{flex-wrap:wrap}.structure-search-actions a{font-size:14px}.workbench-description:empty{display:none}

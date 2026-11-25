@@ -1,0 +1,40 @@
+source_id,source_name,associated_compound_count,source_page,associated_compound_ids
+src-0497cca189aa7e3f5c8015a3,Nocardiopsis sp. LDBS0036,7,2-Strains/nocardiopsis-sp-ldbs0036.html,1-6-phenazinediol.html | 1-hydroxy-4-methoxy-2-naphthoic-acid.html | nocahypyrone-f.html | nocahypyrone-g.html | nocapyrone-h.html | nocapyrone-i.html | nocapyrone-n.html
+src-17114f462bf9b3d3ca0c3c4d,Streptomyces sp. RCDB003,2,2-Strains/streptomyces-sp-rcdb003.html,2-4-hydroxy-3-methoxyphenylquinazolin-4-3h-one.html | 2-4-hydroxyphenylquinazolin-4-3h-one.html
+src-2713b532e56146ca73ab4443,Microbacterium sp. MCCC 1A11207,1,2-Strains/microbacterium-sp-mccc-1a11207.html,microindolinone-a.html
+src-2cee61f01bf20a8e71ba4c88,Streptomyces sp. (marine-derived; strain not specified in checked main text),1,2-Strains/streptomyces-sp-marine-derived-strain-not-specified-in-che-613a54d99c.html,piericidin-a1.html
+src-300e93607820243988efb086,Micromonospora sp. DPJ12,1,2-Strains/micromonospora-sp-dpj12.html,diazepinomicin-eco-4601.html
+src-33cab29930cd1e074f062d62,Georgenia sp. 40DY180,3,2-Strains/georgenia-sp-40dy180.html,5-4-hydroxybenzyl-hydantoin.html | cyclo-trp-gly.html | georgenione-a.html
+src-38661886c4b7e3b31465ce46,Streptomyces sp. N11-34,1,2-Strains/streptomyces-sp-n11-34.html,nyuzenamide-a.html
+src-428ad4060447af83a6a7dbe7,Micromonospora robiginosa · 28ISP2-46T (NCIMB 15402T; DSMZ 111791T),1,2-Strains/micromonospora-robiginosa-28isp2-46t-ncimb-15402t-dsmz-111791t-892d8f08d6.html,kosinostatin.html
+src-4df214a941909c830f325d0e,Streptomyces caelestis · Red Sea isolate; GenBank JX204833,4,2-Strains/streptomyces-caelestis-red-sea-isolate-genbank-jx204833-eee76b8a1c.html,citreaglycon-a.html | citreamicin-theta-a.html | citreamicin-theta-b.html | dehydrocitreaglycon-a.html
+src-4f3d89dd3c12daa41c1f41b4,Streptomyces caelestis AW9-9C,2,2-Strains/streptomyces-caelestis-aw9-9c.html,citreamicin-epsilon-a.html | citreamicin-epsilon-b.html
+src-59735ce15511a5cd85f912f7,Streptomyces sp. SCSIO 01127,1,2-Strains/streptomyces-sp-scsio-01127.html,lobophorin-f.html
+src-5d6d6a81f6a82ad5f912e6ac,Streptomyces sp. SY1414,2,2-Strains/streptomyces-sp-sy1414.html,actinophenanthroline-c.html | bafilomycin-a2.html
+src-611247ab1976cad7a2f1d056,Streptomyces sp. ZZ820,11,2-Strains/streptomyces-sp-zz820.html,1-acetyl-b-carboline.html | 18-acetylcyclooctatin.html | 3-cyanomethyl-6-prenylindole.html | 5-18-dedihydroxycyclooctatin.html | 5-dehydroxycyclooctatin.html | cyclooctatin.html | indole-3-acetic-acid-methyl-ester.html | n-2-1h-indol-3-ylethylacetamide.html | streptoprenylindole-a.html | streptoprenylindole-b.html | streptoprenylindole-c.html
+src-6605c052916a6b4914257a0b,Nesterenkonia halobia · E5.1,1,2-Strains/nesterenkonia-halobia-e5-1.html,nesteretal-a.html
+src-6ba1b842869d6e7971039c71,Pseudonocardia sp. SCSIO 01299,4,2-Strains/pseudonocardia-sp-scsio-01299.html,deoxynyboquinone.html | pseudonocardian-a.html | pseudonocardian-b.html | pseudonocardian-c.html
+src-6c2806b96972276b073a7588,Streptomyces marinisediminis · JHD1T,1,2-Strains/streptomyces-marinisediminis-jhd1t-d9bf64e689.html,2-2-dioxidothiolutin.html
+src-74529029adb1308cdd455d07,Amycolatopsis sp. L-30-6 (streptomycin-resistant mutant of WP1; CGMCC 10738),11,2-Strains/amycolatopsis-sp-l-30-6-streptomycin-resistant-mutant-of-w-7232e8c10f.html,6-ethoxymethyleugenin.html | 6-hydroxymethyleugenin.html | 6-methoxymethyleugenin.html | amycolachromone-a.html | amycolachromone-b.html | amycolachromone-c.html | amycolachromone-d.html | amycolachromone-e.html | amycolachromone-f.html | chaetoquadrin-d.html | emodin.html
+src-75482d35a1205cee388f4adb,Marine actinomycete strain NPS12745 (proposed genus Marinispora),1,2-Strains/marine-actinomycete-strain-nps12745-proposed-genus-marinispora.html,lynamicin-a.html
+src-7bac72ce2e997095ba241afe,Streptomyces cyaneofuscatus M-169,2,2-Strains/streptomyces-cyaneofuscatus-m-169.html,anthracimycin-b.html | anthracimycin.html
+src-7cea2deba95281a06e3b5cee,Streptomyces sp. ZZ741,11,2-Strains/streptomyces-sp-zz741.html,streptoglutarimide-a.html | streptoglutarimide-b.html | streptoglutarimide-c.html | streptoglutarimide-d.html | streptoglutarimide-e.html | streptoglutarimide-f.html | streptoglutarimide-g.html | streptoglutarimide-h.html | streptoglutarimide-i.html | streptoglutarimide-j.html | streptovitacin-a.html
+src-7d5941fb1bbd7243ebcf6ae2,Streptomyces sp. · NTK 937,1,2-Strains/streptomyces-sp-ntk-937-81abaeb7da.html,caboxamycin.html
+src-83c703b45e6f86a8d8f57abd,Streptomyces halstedii · RJA635,1,2-Strains/streptomyces-halstedii-rja635.html,bafilomycin-d.html
+src-87263ea792fb52070edd4fef,Streptomyces sp. SY2255,1,2-Strains/src-87263ea792fb52070edd4fef.html,6-hydroxybenzothiazole.html
+src-873f802659e9a0f2482445a0,Streptomyces koyangensis SCSIO 5802,3,2-Strains/streptomyces-koyangensis-scsio-5802.html,neoabyssomicin-d.html | neoabyssomicin-e.html | neoabyssomicin-f.html
+src-9492d765685d57a251defd71,Salinispora tropica CNB-392,1,2-Strains/salinispora-tropica-cnb-392.html,salinosporamide-c.html
+src-a87f2cf4213c796e30a49d12,Actinoalloteichus sp. SHA6,1,2-Strains/actinoalloteichus-sp-sha6.html,maclafungin.html
+src-a90a769cb919c0ec8172badb,Dermacoccus abyssi · MT1.1T,1,2-Strains/dermacoccus-abyssi-mt1-1t.html,dermacozine-m.html
+src-bb0a5945cc1282f80e022e92,Streptomyces niveus SCSIO 3406,1,2-Strains/streptomyces-niveus-scsio-3406.html,marfuraquinocin-a.html
+src-bd6564159772f0c3cc427b28,Micromonospora sp. · TP-A0468,1,2-Strains/micromonospora-sp-tp-a0468-471843c7be.html,kosinostatin.html
+src-be0daba875af4be691e35b18,Streptomyces antibioticus OUCT16-23,12,2-Strains/streptomyces-antibioticus-ouct16-23.html,chainin.html | filipin-ii.html | filipin-iii.html | filipin-ix.html | filipin-vi.html | filipin-vii.html | filipin-viii.html | filipin-x.html | filipin-xi.html | filipin-xii.html | filipin-xiii.html | filipin-xiv.html
+src-c12940b0113ee81dd6919d94,Streptomyces albus J1074 (heterologous producer),1,2-Strains/streptomyces-albus-j1074-heterologous-producer.html,berninamycin-j.html
+src-c95271cad9ff8d191ea1ff2a,Mariana Trench-associated actinomycete Streptomyces sp. SY2255,1,2-Strains/mariana-trench-associated-actinomycete-streptomyces-sp-sy2255.html,6-hydroxybenzothiazole.html
+src-ca5f75d350352fbffd81850c,Streptomyces scopuliridis SCSIO ZJ46,2,2-Strains/streptomyces-scopuliridis-scsio-zj46.html,desotamide-a.html | desotamide-b.html
+src-d83a3432d212e95813e304f0,Dermacoccus abyssi · MT1.1 and MT1.2,10,2-Strains/dermacoccus-abyssi-mt1-1-and-mt1-2.html,dermacozine-a.html | dermacozine-b.html | dermacozine-c.html | dermacozine-d.html | dermacozine-e.html | dermacozine-f.html | dermacozine-g.html | dermacozine-h.html | dermacozine-i.html | dermacozine-j.html
+src-eb5f1c73af5f7605a3270c8e,Actinomycete sp. (Y-8521050 / Y-8520050; primary spelling conflict),1,2-Strains/src-eb5f1c73af5f7605a3270c8e.html,maclafungin.html
+src-f15c1261a6980ee5f3433cde,Serinicoccus profundi MCCC 1A05965T,6,2-Strains/serinicoccus-profundi-mccc-1a05965t.html,3-6-methylpyrazin-2-yl-methyl-1h-indole.html | 4-2-hydroxyphenyl-4-oxobutanoic-acid.html | cyclo-l-pro-l-phe.html | cyclo-l-pro-l-tyr.html | n-4-hydroxyphenethyl-acetamide.html | s-acetylamino-3-indole-propanol.html
+src-f31ea34e4427c9883a214ad7,Streptomyces atratus SCSIO ZH16treptomyces cyaneofuscatus M-169,1,2-Strains/streptomyces-atratus-scsio-zh16treptomyces-cyaneofuscatus-m-169.html,ilamycin-a.html
+src-f7919cc25b77196ed18e2e5d,Marinactinospora thermotolerans SCSIO 00652,1,2-Strains/marinactinospora-thermotolerans-scsio-00652.html,marthiapeptide-a.html
+src-fb10520adb2b86fc46073c87,Streptomyces sp. SCSIO 03032,4,2-Strains/streptomyces-sp-scsio-03032.html,spiroindimicin-a.html | spiroindimicin-b.html | spiroindimicin-c.html | spiroindimicin-d.html

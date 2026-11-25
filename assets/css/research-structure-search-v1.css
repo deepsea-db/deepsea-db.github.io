@@ -1,0 +1,43 @@
+/* Scope all additions to the workbench structure-search task. */
+#structure-search{margin-top:0}
+#structure-search-form{padding:22px}
+#structure-search-form>label{display:block;font-size:15px;font-weight:600;margin-bottom:9px}
+#structure-query{display:block;box-sizing:border-box;width:100%;resize:vertical;min-height:88px;font:14px/1.6 Consolas,monospace;padding:12px 14px;border:1px solid #cbdce8;border-radius:7px;background:#fff;color:#294b64}
+#structure-query:focus-visible{outline:2px solid #3477bb;outline-offset:2px}
+#structure-search .structure-search-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:15px 0 10px}
+#structure-search .structure-search-settings{margin:14px 0;font-size:13px}
+#structure-search .structure-search-settings>div{display:flex;gap:22px;flex-wrap:wrap;margin:12px 0}
+#structure-search .structure-search-settings label{display:flex;align-items:center;gap:10px}
+#structure-threshold{max-width:90px}
+#structure-search-status:empty{display:none}
+#structure-search-status{font-size:14px;color:#526d83;margin:18px 0}
+#structure-search .structure-query-summary{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:center;padding:18px 22px}
+#structure-query-svg svg{display:block;width:100%;height:150px}
+#structure-search h2{font-size:18px;margin:0 0 12px;line-height:1.5}
+#structure-search p{line-height:1.7;overflow-wrap:anywhere}
+#structure-search .structure-search-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+#structure-search .structure-search-tabs button{font-size:14px;padding:9px 13px}
+#structure-search .structure-search-tabs button[aria-pressed="true"]{background:#e5eff9;border-color:#8eafc8;color:#205d89}
+#structure-search .structure-search-tabs span{margin-left:6px;font-variant-numeric:tabular-nums}
+#structure-search .structure-result-section{margin:20px 0 30px}
+#structure-search .structure-result-section>p{margin-bottom:15px}
+#structure-search .structure-hit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#structure-search .structure-hit{display:flex;flex-direction:column;gap:9px;min-width:0;padding:18px;border:1px solid #d5e2ed;border-radius:10px;background:#fff}
+#structure-search .structure-hit-identity{display:block;text-decoration:none}
+#structure-search .structure-hit-image{height:155px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+#structure-search .structure-hit-image img,#structure-search .structure-hit-image svg{width:100%;height:155px;object-fit:contain}
+#structure-search .structure-hit h3{font-size:17px;line-height:1.5;margin:0;overflow-wrap:anywhere}
+#structure-search .structure-hit p{font-size:14px;margin:0;color:#526d83}
+#structure-search .structure-hit .small{font-size:13px}
+#structure-search .structure-hit .structure-hit-score{color:#2d688a}
+#structure-search .structure-hit-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:7px;font-size:13px}
+#structure-search .structure-hit-actions button{padding:7px 10px;font-size:13px}
+#structure-search .structure-search-methods{padding:16px 20px;margin:24px 0;font-size:14px}
+#structure-search .structure-query-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+#structure-search .structure-query-pair h3{font-size:15px;line-height:1.5}
+#structure-search .structure-query-pair svg{display:block;width:100%;height:auto;max-height:300px}
+#structure-search .structure-comparison-title{display:flex;justify-content:space-between;gap:20px;align-items:center}
+#structure-query-comparison{scroll-margin-top:20px}
+@media(max-width:1100px){#structure-search .structure-hit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){body:has(#structure-search:not([hidden])) main{min-width:0;margin-left:0;padding:22px 18px}body:has(#structure-search:not([hidden])) .sidebar{position:static;width:auto}body:has(#structure-search:not([hidden])) .sidebar nav{display:flex;overflow:auto;padding:6px}body:has(#structure-search:not([hidden])) .sidebar nav a{white-space:nowrap;padding:10px 12px;font-size:13px}body:has(#structure-search:not([hidden])) .sidebar .brand{padding:16px 18px}body:has(#structure-search:not([hidden])) .sidebar .side-bottom{display:none}body:has(#structure-search:not([hidden])) .database-return{margin:0 18px 12px}#structure-search .structure-query-summary{grid-template-columns:1fr;padding:18px;gap:8px}#structure-query-svg{max-width:260px;margin:auto}#structure-search .structure-query-pair{grid-template-columns:1fr}#structure-search-form{padding:18px}}
+@media(max-width:480px){#structure-search .structure-hit-grid{grid-template-columns:1fr}}

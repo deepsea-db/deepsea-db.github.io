@@ -1,0 +1,297 @@
+{
+  "version": "core-research-cases-20261106.1",
+  "generation": "5eaf51fca295aee837097801267fb08f530c8cd36ed5d9eb5596c8b77f5398fa",
+  "source_sha256": "1b1dc3d7b82e4f74cc23fde34e6faf724d7b3ba35661ed09f8c95eb3227a77b3",
+  "admitted_evidence_sha256": "e14613727f779b342317d618e99a6f00ea5f74e3bffe910540311164932741dc",
+  "taxonomy": {
+    "Actinomycetes": {
+      "source_count": 39,
+      "compound_count": 115,
+      "route": "7-Source-Taxa/bacteria-class-actinomycetes-ca1db147.html"
+    },
+    "Streptomyces": {
+      "source_count": 22,
+      "compound_count": 65,
+      "route": "7-Source-Taxa/bacteria-genus-streptomyces-bdef82d4.html"
+    }
+  },
+  "documents": [
+    {
+      "pmid": "23745985",
+      "sha256": "6161e04098418b7d71a39da7cd5bf77091d50d1312aa46fff20c2ecd83e66a09",
+      "pages": 9
+    },
+    {
+      "pmid": "41892967",
+      "sha256": "7d648459971e2ff349b681f65d6166f2058689f6e72d92203fc602d5e5910ecc",
+      "pages": 15
+    },
+    {
+      "pmid": "18054490",
+      "sha256": "00f6f11105982f6e5c8a65236b10b0710f03d45c0547348ebe78d28d64e6f0f1",
+      "pages": 9
+    },
+    {
+      "pmid": "34251816",
+      "sha256": "3ca4c5215666c607bb78a6710cde2cc0cc4db34635f6ff4b479cea9f7ad6a69c",
+      "pages": 17
+    }
+  ],
+  "cases": [
+    {
+      "id": "actinomycete-products",
+      "title": "From actinomycete diversity to cell activity",
+      "question": "Which reported microbial sources connect to a compound with a traceable nanomolar cellular result?",
+      "source_name": "Streptomyces caelestis AW9-9C",
+      "sampling": "Red Sea coastal waters near Jeddah, Saudi Arabia; sampling depth not reported.",
+      "scope_note": "Related marine extension. This case does not establish deep-sea provenance. The ambiguous printed coordinates remain withheld.",
+      "compounds": [
+        "citreamicin-epsilon-a.html",
+        "citreamicin-epsilon-b.html"
+      ],
+      "results": [
+        {
+          "compound": "citreamicin-epsilon-a.html",
+          "activity_id": "a-a84ae050734e6e1b6a403a3a",
+          "original_record_id": "citreamicin-epsilon-a.html:activities:0",
+          "source_row_sha256": "40fcb00e7866bdd80554acc79789a87e762d067ccd1a5f49c5a2100e8a3f6dea",
+          "source_document_sha256": "6161e04098418b7d71a39da7cd5bf77091d50d1312aa46fff20c2ecd83e66a09",
+          "test": "HeLa (cervical cancer)",
+          "endpoint": "IC50",
+          "original_result": "0.032 ± 0.0062 μM",
+          "display_result": "32 ± 6.2 nM",
+          "value_nM": 32.0,
+          "unit": "nM",
+          "normalization": "μM × 1000 = nM; original value retained",
+          "locator": "PDFp1/p2 compounds1/2; p3 MTT48h; p4 Table1 and Figure3 uncertainty",
+          "doi": "10.1021/tx4000304",
+          "method": "MTT",
+          "exposure_hours": 48,
+          "uncertainty_note": "Reported ± retained; fitted IC50 uncertainty type is not separately defined",
+          "evidence_kind": "Cellular phenotype",
+          "reported_error_nM": 6.2
+        },
+        {
+          "compound": "citreamicin-epsilon-b.html",
+          "activity_id": "a-5a5a4fe72ab03879b8b3df5e",
+          "original_record_id": "citreamicin-epsilon-b.html:activities:0",
+          "source_row_sha256": "71047e287f09fa33b4bafd923dac691a4c6be785d94b4b1f7ad801df36a54a2e",
+          "source_document_sha256": "6161e04098418b7d71a39da7cd5bf77091d50d1312aa46fff20c2ecd83e66a09",
+          "test": "HeLa (cervical cancer)",
+          "endpoint": "IC50",
+          "original_result": "0.031 ± 0.0081 μM",
+          "display_result": "31 ± 8.1 nM",
+          "value_nM": 31.0,
+          "unit": "nM",
+          "normalization": "μM × 1000 = nM; original value retained",
+          "locator": "PDFp1/p2 compounds1/2; p3 MTT48h; p4 Table1 and Figure3 uncertainty",
+          "doi": "10.1021/tx4000304",
+          "method": "MTT",
+          "exposure_hours": 48,
+          "uncertainty_note": "Reported ± retained; fitted IC50 uncertainty type is not separately defined",
+          "evidence_kind": "Cellular phenotype",
+          "reported_error_nM": 8.1
+        }
+      ],
+      "steps": [
+        {
+          "title": "Select a biological group",
+          "text": "Choose Bacteria → Actinomycetes to see 37 source profiles and 115 distinct associated compounds. Narrowing to Streptomyces gives 21 profiles and 65 compounds.",
+          "route": "7-Source-Taxa/bacteria-class-actinomycetes-ca1db147.html",
+          "label": "Open Actinomycetes"
+        },
+        {
+          "title": "Inspect the producer and collection context",
+          "text": "Open S. caelestis AW9-9C and inspect its Red Sea collection description, reported identification evidence and two associated products. Depth remains unknown.",
+          "route": "2-Strains/streptomyces-caelestis-aw9-9c.html",
+          "label": "Open AW9-9C"
+        },
+        {
+          "title": "Resolve the compound and its own assay",
+          "text": "Follow citreamicins ε A and ε B to the HeLa experiments. Both values are from the same 48 h MTT study, with the original uncertainties retained.",
+          "route": "1-Compounds/citreamicin-epsilon-a.html#citreamicin-epsilon-a.html:activities:0",
+          "label": "Open the HeLa assay"
+        },
+        {
+          "title": "Return to the primary publication",
+          "text": "Use Table 1 and Figure 3 on PDF p4 for the cellular results, p3 for the MTT procedure and p2 for microbial collection. The caspase/apoptosis findings are not a direct-binding assignment.",
+          "url": "https://doi.org/10.1021/tx4000304",
+          "label": "Read the primary article"
+        }
+      ],
+      "conclusion": "The source, chemical record and cellular experiment are connected through evidence. Cell viability and apoptosis do not identify a directly bound molecular target.",
+      "references": [
+        {
+          "pmid": "23745985",
+          "doi": "10.1021/tx4000304",
+          "locator": "PDF p2 collection; p3 methods; p4 Table 1 and Figure 3"
+        }
+      ],
+      "source_profile_id": "src-4f3d89dd3c12daa41c1f41b4"
+    },
+    {
+      "id": "deepsea-provenance",
+      "title": "From a deep-sea sampling record to compound activity",
+      "question": "Can a cellular result be traced back to an explicitly reported deep-sea producing strain?",
+      "source_name": "Penicillium senticosum RCDB005",
+      "sampling": "South China Sea sediment collected at 1,400 m; numerical coordinates not reported.",
+      "scope_note": "Depth-qualified deep-sea source. Reported ITS accession PX069401 is an evidence-linked identifier, not a new authentication performed by the database.",
+      "compounds": [
+        "penicacid-m.html"
+      ],
+      "results": [
+        {
+          "compound": "penicacid-m.html",
+          "activity_id": "a-c29813016cd109df01228c21",
+          "original_record_id": "penicacid-m.html:activities:0",
+          "source_row_sha256": "4389eedbb23c65a6caab140c6a9f89df2eda1367f9fa26b2a766a2f2ed79e06f",
+          "source_document_sha256": "7d648459971e2ff349b681f65d6166f2058689f6e72d92203fc602d5e5910ecc",
+          "test": "MOLM-13",
+          "endpoint": "IC50",
+          "original_result": "0.06 ± 0.02 μM",
+          "display_result": "60 ± 20 nM",
+          "value_nM": 60.0,
+          "unit": "nM",
+          "normalization": "μM × 1000 = nM; original value retained",
+          "locator": "p9 Table4; p13 section3.8",
+          "doi": "10.3390/md24030108",
+          "method": "CCK-8;450nm",
+          "exposure_hours": 72,
+          "uncertainty_note": "Reported ± retained; fitted IC50 uncertainty type is not separately defined",
+          "evidence_kind": "Cellular phenotype",
+          "reported_error_nM": 20.0
+        }
+      ],
+      "steps": [
+        {
+          "title": "Start with sampling and identification",
+          "text": "Open RCDB005 to inspect the 1,400 m sediment source and reported accession PX069401. The profile connects 16 compound records. Identification details not stored in the profile remain unassigned; the primary article provides the ITS context.",
+          "route": "2-Strains/penicillium-senticosum-rcdb005.html",
+          "label": "Open RCDB005"
+        },
+        {
+          "title": "Follow the reported product",
+          "text": "Select penicacid M, identified as compound 16 in the article, and inspect its chemical record and source-specific provenance.",
+          "route": "1-Compounds/penicacid-m.html",
+          "label": "Open penicacid M"
+        },
+        {
+          "title": "Keep the assay conditions with the result",
+          "text": "The MOLM-13 result comes from a CCK-8 cellular assay after 72 h exposure, read at 450 nm after a further 2 h reagent incubation. The displayed nM value is an exact rescaling of the reported μM value.",
+          "route": "1-Compounds/penicacid-m.html#penicacid-m.html:activities:0",
+          "label": "Open the MOLM-13 assay"
+        },
+        {
+          "title": "Check the original evidence chain",
+          "text": "Verify compound 16 and its activity in PDF p9 Table 4, the producing strain and 1,400 m sampling depth in p10 Section 3.2, and the assay in p13 Section 3.8.",
+          "url": "https://doi.org/10.3390/md24030108",
+          "label": "Read the primary article"
+        }
+      ],
+      "conclusion": "This case supports a reported deep-sea origin and a measured cellular antiproliferative result. The article does not assign a molecular target to that result.",
+      "references": [
+        {
+          "pmid": "41892967",
+          "doi": "10.3390/md24030108",
+          "locator": "PDF p9 Table 4; p10 Section 3.2; p13 Section 3.8"
+        }
+      ],
+      "source_profile_id": "src-aa8ea313d40436b755f180da"
+    },
+    {
+      "id": "target-to-experiment",
+      "title": "From a target annotation to the actual experiment",
+      "question": "What was measured behind a target label, and which source context belongs to the compound?",
+      "source_name": "Marine-derived Streptomyces sp.; strain unspecified in the reviewed source article",
+      "sampling": "Marine-derived culture reported in a separate 2021 article; locality, water depth and coordinates not specified.",
+      "scope_note": "Related marine extension. The 2008 assay uses piericidin A1 as reference compound 5; it does not identify that test material as a product of the iromycin-producing Dra17 strain.",
+      "compounds": [
+        "piericidin-a1.html"
+      ],
+      "results": [
+        {
+          "compound": "piericidin-a1.html",
+          "activity_id": "a-c1a1bac649a6dc8f0302da47",
+          "original_record_id": "piericidin-a1.html:activities:42",
+          "source_row_sha256": "0269e0bf4586fda1f928c075fd9aeb1fe4c2927b08c99339b2a042da75190605",
+          "source_document_sha256": "00f6f11105982f6e5c8a65236b10b0710f03d45c0547348ebe78d28d64e6f0f1",
+          "test": "NADH oxidation in bovine-heart submitochondrial particles",
+          "endpoint": "IC50",
+          "original_result": "2.1 ng/mL; paired 0.005 μM",
+          "display_result": "5 nM",
+          "value_nM": 5.0,
+          "unit": "nM",
+          "normalization": "molar value in the same primary table; no mass-to-molar inference",
+          "locator": "p1741 Table1; p1742 reference inhibitor5; bovine heart SMP NADH oxidation",
+          "doi": "10.1016/j.bmc.2007.11.023",
+          "method": "Not specified in the stored assay row",
+          "exposure_hours": null,
+          "uncertainty_note": "No uncertainty inferred",
+          "evidence_kind": "Functional enzyme assay"
+        },
+        {
+          "compound": "piericidin-a1.html",
+          "activity_id": "a-5def85295b6fa15384497a18",
+          "original_record_id": "piericidin-a1.html:activities:30",
+          "source_row_sha256": "435c7c331aa7051b81f2f6fa61216940adc899bcd4debe3cea1c44734df962a3",
+          "source_document_sha256": "00f6f11105982f6e5c8a65236b10b0710f03d45c0547348ebe78d28d64e6f0f1",
+          "test": "L929 mouse fibroblasts",
+          "endpoint": "IC50",
+          "original_result": "0.43 nM; paired 0.18 ng/mL",
+          "display_result": "0.43 nM",
+          "value_nM": 0.43,
+          "unit": "nM",
+          "normalization": "original nM value",
+          "locator": "PDF p5 cytotoxicity paragraph; full page plus legible result crop",
+          "doi": "10.1016/j.bmc.2007.11.023",
+          "method": "Not specified in the stored assay row",
+          "exposure_hours": null,
+          "uncertainty_note": "No uncertainty inferred",
+          "evidence_kind": "Cellular phenotype"
+        }
+      ],
+      "steps": [
+        {
+          "title": "Enter through the target annotation",
+          "text": "Open Mitochondrial complex I; NADH oxidoreductase and follow the primary functional row for piericidin A1.",
+          "route": "3-Targets/mitochondrial-complex-i-nadh-oxidoreductase.html",
+          "label": "Open the target record"
+        },
+        {
+          "title": "Inspect the tested preparation",
+          "text": "The measured preparation is bovine-heart submitochondrial particles, with NADH oxidation as the functional readout. It is not an isolated single-subunit binding experiment.",
+          "route": "1-Compounds/piericidin-a1.html#piericidin-a1.html:activities:42",
+          "label": "Open the functional assay"
+        },
+        {
+          "title": "Separate function, cytotoxicity and origin",
+          "text": "The same 2008 paper reports L929 cytotoxicity separately. The stored marine-source report belongs to a different publication; its sampling gaps remain visible.",
+          "route": "2-Strains/streptomyces-sp-marine-derived-strain-not-specified-in-che-613a54d99c.html",
+          "label": "Open the source context"
+        },
+        {
+          "title": "Verify the original records",
+          "text": "Check PDF p4 Table 1, p5 for the reference-compound and L929 descriptions, and p7 Sections 6.2–6.3 for the mitochondrial assay. The separate 2021 source report is Section 5.1.",
+          "url": "https://doi.org/10.1016/j.bmc.2007.11.023",
+          "label": "Read the assay article"
+        }
+      ],
+      "conclusion": "Functional inhibition, cellular cytotoxicity and microbial origin retain separate publication contexts. No individual subunit, UniProt identifier or direct binding is inferred.",
+      "references": [
+        {
+          "pmid": "18054490",
+          "doi": "10.1016/j.bmc.2007.11.023",
+          "locator": "PDF p4 Table 1; p5 biological results; p7 Sections 6.2–6.3"
+        },
+        {
+          "pmid": "34251816",
+          "doi": "10.1021/acs.jmedchem.1c00175",
+          "locator": "PDF p13 Section 5.1; separate marine-source report"
+        }
+      ],
+      "source_profile_id": "src-2cee61f01bf20a8e71ba4c88"
+    }
+  ],
+  "unit_policy": "Preserve original database units and values. nM is an explicitly labeled display rescaling of molar values; do not infer a molar value from mass concentration.",
+  "scientific_records_changed": false
+}

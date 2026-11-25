@@ -1,0 +1,1 @@
+window.PHARMACOLOGY_SYNC = {"status":"ready","generation_id":"15f46eca267e2e9a8555a85b70b65cb2b66f083d8fd9ed787b1af752314ed19a","evidence_rows":5056,"paired_rows":5056,"as_of":"2026-11-25","version":"1.1.1"};

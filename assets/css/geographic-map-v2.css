@@ -1,0 +1,39 @@
+.classic-map svg { display:block; width:100%; height:auto; aspect-ratio:2/1; background:#0b1a2e; border-radius:8px; }
+.classic-map .classic-region-marker circle { stroke:#fff; stroke-width:1; }
+.classic-map .classic-region-marker:hover circle, .classic-map .classic-region-marker:focus circle { stroke:#ffd166; stroke-width:1.7; }
+.classic-map .classic-region-label { text-decoration:none; }
+.classic-map .classic-region-label text { fill:#eaf4ff; font:9px system-ui,-apple-system,"Segoe UI",sans-serif; text-anchor:middle; paint-order:stroke; stroke:#0b1a2e; stroke-width:3px; stroke-linejoin:round; }
+.classic-map .classic-region-label:hover text { fill:#ffd166; }
+.classic-map .classic-coordinate-marker { cursor:pointer; }
+.classic-map .classic-coordinate-hit { fill:transparent; }
+.classic-map .classic-coordinate-dot { fill:#8ce0ed; stroke:#e5faff; stroke-width:.7; }
+.classic-map .classic-coordinate-marker:hover .classic-coordinate-dot, .classic-map .classic-coordinate-marker:focus .classic-coordinate-dot { fill:#ffd166; stroke:#fff0c5; stroke-width:1.3; }
+.classic-map .classic-coordinate-marker:focus-visible { outline:none; }
+.classic-map .classic-map-selection { position:relative; margin:12px 0 0; padding:10px 30px 10px 12px; border:1px solid #3a6481; border-radius:7px; background:rgba(29,64,94,.45); color:#cce2f3; font:12px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+.classic-map .classic-map-selection[hidden] { display:none; }
+.classic-map .classic-map-selection strong { font-variant-numeric:tabular-nums; }
+.classic-map .classic-map-selection button { position:absolute; right:6px; top:5px; border:0; background:transparent; color:inherit; cursor:pointer; font-size:18px; }
+.classic-map .classic-coordinate-links { display:flex; gap:4px 14px; flex-wrap:wrap; max-height:120px; overflow:auto; margin-top:5px; }
+.classic-map .classic-coordinate-links a { color:#9bd7ed; text-decoration:none; }
+.classic-map .classic-coordinate-links a:hover { text-decoration:underline; }
+.classic-map.map-card .classic-map-selection { margin:8px 16px 16px; color:#285572; border-color:#bed2e3; background:#f0f6fb; }
+.classic-map.map-card .classic-coordinate-links a { color:#276697; }
+.classic-map .classic-map-note { margin:8px 0 0; font-size:11px; line-height:1.6; color:inherit; opacity:.65; }
+
+/* Match the original homepage theme above and below the map. Colours only. */
+html[data-site-comfort-home] .geo-card.classic-map { background:rgba(255,255,255,.025); border-color:rgba(137,182,216,.12); }
+html[data-site-comfort-home] .classic-map .geo-title { color:var(--text-secondary); opacity:1; }
+html[data-site-comfort-home] .classic-map .geo-sub,
+html[data-site-comfort-home] .classic-map .geo-legend,
+html[data-site-comfort-home] .classic-map .classic-map-note { color:var(--text-muted); opacity:1; }
+html[data-site-comfort-home] .classic-map .geo-hint { color:var(--primary); opacity:1; }
+html:root[data-site-comfort-home] .content-inner>.home-data-license,
+html:root[data-site-comfort-home] .content-inner>.home-data-license p { color:var(--text-muted); opacity:1; }
+
+/* Minimal map furniture; factual interpretation remains on hover and in detail views. */
+.classic-map .classic-map-legend { display:flex; align-items:center; gap:12px 20px; flex-wrap:wrap; padding-top:12px; color:var(--text-muted,#a2b7ce); font:11px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
+.classic-map .classic-map-legend>span { display:inline-flex; align-items:center; gap:6px; }
+.classic-map .classic-map-legend i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+.classic-map .classic-map-legend .coordinate-key { width:6px; height:6px; background:#8ce0ed; border:1px solid #e5faff; }
+.classic-map.map-card .classic-map-legend { padding:12px 18px 16px; }
+.classic-map .classic-coordinate-note { margin:6px 0 0; font-size:11px; color:inherit; }

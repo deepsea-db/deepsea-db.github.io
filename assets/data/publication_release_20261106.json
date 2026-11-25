@@ -1,0 +1,49 @@
+{
+  "release": "2026-11-11.1",
+  "generation": "5eaf51fca295aee837097801267fb08f530c8cd36ed5d9eb5596c8b77f5398fa",
+  "threshold_m": 200,
+  "reference": "https://oceanexplorer.noaa.gov/ocean-fact/deep-ocean/",
+  "groups": {
+    "related_marine_or_RCDB_extension": 415,
+    "depth_qualified_deep_sea_subset": 808,
+    "scope_pending": 23,
+    "withheld_archive": 6
+  },
+  "metrics": {
+    "archive_records": 1252,
+    "public_records": 1246,
+    "withheld_records": 6,
+    "supported_records": 1223,
+    "scope_pending_records": 23,
+    "center_records": 73,
+    "display_activity_records": 6210,
+    "admitted_activity_rows": 5056,
+    "source_entries": 285,
+    "target_annotation_nodes": 183,
+    "assay_system_labels": 1163,
+    "chemotype_labels": 10,
+    "reference_catalog_records": 515,
+    "reported_coordinate_occurrences": 474,
+    "structure_restricted_records": 65,
+    "source_recorded_labels": 301,
+    "source_observations": 1464
+  },
+  "display_bins_m": {
+    "Shallow": "<200",
+    "Slope": "200–<1000",
+    "Deep": "1000–<6000",
+    "Hadal": "≥6000"
+  },
+  "qualitative_depth_rule": "Verified sea shoal and coastal subtidal seagrass habitats qualify for Shallow. A primary source that explicitly identifies the sample or strain as hadal qualifies for Hadal. These observations carry no numeric depth value.",
+  "unknown": "No single eligible display band; not synonymous with no depth in the paper.",
+  "grain": "Compound records; source profiles are not unique authenticated strains; location labels are not sampling events.",
+  "public_https_verified": false,
+  "data_license": "No blanket redistribution license is granted by this local release. Consult original publications and dataset terms.",
+  "citation": "Deep-Sea Compound Database. Local release 2026-11-11.1. Generation 5eaf51fca295aee837097801267fb08f530c8cd36ed5d9eb5596c8b77f5398fa. Public access URL pending deployment.",
+  "target_evidence": {
+    "primary_assay_rows": 132,
+    "restricted_or_unreviewed_rows": 187,
+    "direct_binding_rows": 5,
+    "scope": "Annotation rows; direct binding requires a separately reviewed primary assay. Functional and negative screens do not imply direct binding."
+  }
+}

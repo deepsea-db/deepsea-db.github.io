@@ -1,0 +1,12 @@
+row_id,file,name,cid,inchikey,smiles,system,endpoint,value,value_min,value_max,relation,unit,error,error_type,method,exposure_hours,dose_value,dose_unit,sample_form,control,layer,paper,quantitative_allowed
+
+demo-1,diorcinol.html,Diorcinol,,,,BIU-87,IC50,200,,,<,nM,10,SD,MTT; absorbance490nm; 5000cells/well; DMSO0.5%; triplicate,48,,,pure compound,vehicle control,cell_phenotype,SYNTHETIC-DEMO-ONLY,True
+
+demo-2,,Synthetic sample B,,,,BIU-87,IC50,0.15,,,=,uM,,,MTT; absorbance490nm; 5000cells/well; DMSO0.5%; triplicate,48,,,pure compound,vehicle control,cell_phenotype,SYNTHETIC-DEMO-ONLY,True
+
+demo-3,diorcinol.html,Diorcinol,,,,BIU-87,IC50,,0.1,0.3,range,uM,,,MTT; absorbance490nm; 5000cells/well; DMSO0.5%; triplicate,12,,,pure compound,vehicle control,cell_phenotype,SYNTHETIC-DEMO-ONLY,True
+
+demo-4,,Diorcinol,,,,BIU-87,IC50,200,,,=,nM,,,,48,,,pure compound,vehicle control,cell_phenotype,SYNTHETIC-DEMO-ONLY,True
+
+demo-5,,Synthetic sample C,,,,BIU-87,inhibition,-5,,,=,%,,,MTT; absorbance490nm; 5000cells/well; DMSO0.5%; triplicate,48,,,pure compound,vehicle control,cell_phenotype,SYNTHETIC-DEMO-ONLY,True
+

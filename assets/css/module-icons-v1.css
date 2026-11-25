@@ -1,0 +1,20 @@
+/* Icon dimensions and alignment only; typography, charts and Home remain unchanged. */
+.pv-module-icon{display:inline-block;flex:none;vertical-align:middle;pointer-events:none}
+.pv-module-heading{display:flex;align-items:center;gap:11px}
+.pv-module-heading-icon{width:24px;height:24px;box-sizing:content-box;padding:6px;border-radius:9px;background:#e4eef8;color:#2276b0}
+body[data-site-view="source"] .pv-module-heading-icon{background:#d6ece9;color:#008aa2}
+body[data-site-view="target"] .pv-module-heading-icon{background:#f0dfee;color:#a05291}
+body[data-site-view="system"] .pv-module-heading-icon{background:#ddeedd;color:#438e57}
+body[data-site-view="chemotype"] .pv-module-heading-icon{background:#e7ddf3;color:#8250ac}
+body[data-site-view="location"] .pv-module-heading-icon{background:#dfedf7;color:#277fa6}
+body[data-site-view="reference"] .pv-module-heading-icon{background:#e5e8f5;color:#6d73a3}
+body[data-site-view="center"] .pv-module-heading-icon{background:#dfefec;color:#268a7b}
+.pv-module-nav-icon{width:17px;height:17px;margin-right:9px;vertical-align:-3px;opacity:.85}
+.pv-module-chart-icon{width:18px;height:18px}
+.pv-module-summary-icon{width:15px;height:15px;margin:0 6px 0 2px;vertical-align:-3px}
+.site-brand.pv-wave-brand,.sidebar>.brand.pv-wave-brand{display:flex;align-items:center;gap:8px;color:#112531;text-decoration:none!important}
+.pv-wave-brand,.pv-wave-brand:hover,.pv-wave-brand:visited,.pv-wave-brand *{text-decoration:none!important}
+.pv-wave-brand-icon{display:inline-block;flex:none;font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:1em;line-height:1}
+.pv-wave-brand-copy{display:block;min-width:0}
+.pv-wave-brand-name{display:block;white-space:nowrap;color:#112531;font:inherit}
+.pv-wave-brand-db{color:#008bca}

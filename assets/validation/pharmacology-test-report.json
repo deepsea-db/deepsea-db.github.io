@@ -1,0 +1,290 @@
+{
+  "passed": true,
+  "checks": 69,
+  "failed": [],
+  "cases": [
+    {
+      "name": "nM scalar",
+      "passed": true
+    },
+    {
+      "name": "mM scalar",
+      "passed": true
+    },
+    {
+      "name": "pM lower bound",
+      "passed": true
+    },
+    {
+      "name": "upper bound retained",
+      "passed": true
+    },
+    {
+      "name": "range retained",
+      "passed": true
+    },
+    {
+      "name": "uncertainty scales",
+      "passed": true
+    },
+    {
+      "name": "mass family",
+      "passed": true
+    },
+    {
+      "name": "mass equivalent",
+      "passed": true
+    },
+    {
+      "name": "negative percent preserved",
+      "passed": true
+    },
+    {
+      "name": "negative concentration invalid",
+      "passed": true
+    },
+    {
+      "name": "reversed bounds invalid",
+      "passed": true
+    },
+    {
+      "name": "one missing bound invalid",
+      "passed": true
+    },
+    {
+      "name": "scalar and interval invalid",
+      "passed": true
+    },
+    {
+      "name": "unknown unit unconverted",
+      "passed": true
+    },
+    {
+      "name": "restricted value unconverted",
+      "passed": true
+    },
+    {
+      "name": "not tested not numeric evidence",
+      "passed": true
+    },
+    {
+      "name": "zero is a value",
+      "passed": true
+    },
+    {
+      "name": "bad number invalid",
+      "passed": true
+    },
+    {
+      "name": "invalid error",
+      "passed": true
+    },
+    {
+      "name": "Greek micro sign",
+      "passed": true
+    },
+    {
+      "name": "same study conditions",
+      "passed": true
+    },
+    {
+      "name": "different publication",
+      "passed": true
+    },
+    {
+      "name": "missing paper is not same study",
+      "passed": true
+    },
+    {
+      "name": "equivalent concentration units",
+      "passed": true
+    },
+    {
+      "name": "endpoint is distinct",
+      "passed": true
+    },
+    {
+      "name": "different cell system",
+      "passed": true
+    },
+    {
+      "name": "different duration",
+      "passed": true
+    },
+    {
+      "name": "different material",
+      "passed": true
+    },
+    {
+      "name": "different control",
+      "passed": true
+    },
+    {
+      "name": "missing method",
+      "passed": true
+    },
+    {
+      "name": "missing sample form",
+      "passed": true
+    },
+    {
+      "name": "missing control",
+      "passed": true
+    },
+    {
+      "name": "mass molar separation",
+      "passed": true
+    },
+    {
+      "name": "different layer",
+      "passed": true
+    },
+    {
+      "name": "source quantitative restriction",
+      "passed": true
+    },
+    {
+      "name": "explicit mismatch outranks missing",
+      "passed": true
+    },
+    {
+      "name": "identity {\"file\":\"a.html\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"cid\":\"1\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"cid\":\"1\",\"inchikey\":\"EXACT-A\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"file\":\"a.html\",\"cid\":\"2\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"name\":\"Alpha\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"file\":\"a.html\",\"name\":\"Beta\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"cid\":\"999\",\"name\":\"Alpha\"}",
+      "passed": true
+    },
+    {
+      "name": "identity {\"smiles\":\"C(C)\"}",
+      "passed": true
+    },
+    {
+      "name": "percentage dose missing",
+      "passed": true
+    },
+    {
+      "name": "percentage dose differs",
+      "passed": true
+    },
+    {
+      "name": "equivalent dose units",
+      "passed": true
+    },
+    {
+      "name": "name candidate is identity-limited",
+      "passed": true
+    },
+    {
+      "name": "CSV quoted comma and newline",
+      "passed": true
+    },
+    {
+      "name": "CSV escaped quotes",
+      "passed": true
+    },
+    {
+      "name": "CSV duplicate header rejected",
+      "passed": true
+    },
+    {
+      "name": "CSV unclosed quote rejected",
+      "passed": true
+    },
+    {
+      "name": "CSV bad row width rejected",
+      "passed": true
+    },
+    {
+      "name": "JSON wrapper",
+      "passed": true
+    },
+    {
+      "name": "CSV formula injection neutralized",
+      "passed": true
+    },
+    {
+      "name": "relations retained in CSV",
+      "passed": true
+    },
+    {
+      "name": "example workflow reads every input row",
+      "passed": true
+    },
+    {
+      "name": "example preserves upper-bound relation",
+      "passed": true
+    },
+    {
+      "name": "example retains unmatched user data",
+      "passed": true
+    },
+    {
+      "name": "example finds real reference evidence",
+      "passed": true
+    },
+    {
+      "name": "example internal matching stays user-reported",
+      "passed": true
+    },
+    {
+      "name": "duplicate user labels rejected",
+      "passed": true
+    },
+    {
+      "name": "bad exposure cannot support matching",
+      "passed": true
+    },
+    {
+      "name": "restricted field absent from admitted dataset",
+      "passed": true
+    },
+    {
+      "name": "all admitted source rows have traceable evidence",
+      "passed": true
+    },
+    {
+      "name": "reference IDs are unique",
+      "passed": true
+    },
+    {
+      "name": "no network or storage in analytical UI",
+      "passed": true
+    },
+    {
+      "name": "no eval or Function construction",
+      "passed": true
+    },
+    {
+      "name": "normalization export retains original units",
+      "passed": true
+    }
+  ],
+  "validation_scope": "Synthetic, hand-authored software rule checks and current-reference integration; not external scientific validation.",
+  "engine_version": "1.0.0",
+  "reference_rows": 3740,
+  "reference_compounds": 788,
+  "example_reference_pairs": 3,
+  "example_user_pairs": 6,
+  "core_sha256": "7adb6e69ea4bbf52fe050972d45de3608979f9d9fb175086f79b8dcd31be22ad"
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html data-home-content-polish="v1" data-site-comfort-home="v1" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>Deep-Sea Compound Database</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans SC','Segoe UI',-apple-system,sans-serif; background:#040812; color:#eef2f6; min-height:100vh; overflow-x:hidden; }
+
+/* ═══════════════════════════════════════════
+   HERO — Light fades to dark (depth gradient)
+   ═══════════════════════════════════════════ */
+.hero {
+  position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column;
+  background: linear-gradient(180deg,
+    #1a5a9a 0%,#14508a 6%,#0d3870 16%,#0a2250 30%,#071438 48%,#050b20 68%,#030612 100%
+  );
+}
+.light-rays { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
+.ray { position:absolute; top:0; width:4px; height:60%;
+  background:linear-gradient(180deg,rgba(255,235,190,0.40) 0%,rgba(180,210,255,0.18) 12%,rgba(100,180,255,0.06) 30%,transparent 65%);
+  transform-origin:top center; }
+.ray-1 { left:10%; transform:rotate(-4deg); }
+.ray-2 { left:28%; transform:rotate(1.5deg); }
+.ray-3 { left:50%; transform:rotate(-1deg); }
+.ray-4 { left:72%; transform:rotate(3.5deg); }
+.ray-5 { left:88%; transform:rotate(-2.5deg); }
+.tech-grid { position:absolute; inset:0; z-index:1; pointer-events:none;
+  background-image:linear-gradient(rgba(40,130,230,0.04) 1px, transparent 1px),linear-gradient(90deg, rgba(40,130,230,0.04) 1px, transparent 1px);
+  background-size:64px 64px; }
+.glow { position:absolute; border-radius:50%; filter:blur(140px); pointer-events:none; z-index:1; }
+.glow-1 { width:500px; height:500px; background:radial-gradient(circle,rgba(0,130,255,0.08),transparent); top:3%; right:8%; }
+.glow-2 { width:600px; height:600px; background:radial-gradient(circle,rgba(0,180,200,0.05),transparent); bottom:5%; left:3%; }
+.depth-zones { position:absolute; left:32px; top:0; bottom:0; z-index:3; display:flex; flex-direction:column; justify-content:space-between; padding:120px 0 90px; pointer-events:none; }
+.zone-item { display:flex; align-items:center; gap:14px; opacity:0; }
+.zone-line { width:32px; height:2px; flex-shrink:0; }
+.zone-text { font-size:14px; letter-spacing:3px; text-transform:uppercase; font-weight:600; color:rgba(255,255,255,0.85); text-shadow:0 0 12px rgba(0,0,0,0.6); }
+@keyframes zoneIn { 0%{opacity:0;transform:translateX(-16px);} 100%{opacity:1;transform:translateX(0);} }
+.zone-item:nth-child(1){animation:zoneIn 1s 0.3s forwards;}
+.zone-item:nth-child(2){animation:zoneIn 1s 1.2s forwards;}
+.zone-item:nth-child(3){animation:zoneIn 1s 2.1s forwards;}
+.zone-item:nth-child(4){animation:zoneIn 1s 3.0s forwards;}
+.zone-item:nth-child(5){animation:zoneIn 1s 3.9s forwards;}
+
+/* Floating microbes */
+#microbes { position:absolute; inset:0; z-index:2; overflow:hidden; pointer-events:none; }
+.microbe { position:absolute; bottom:-80px; opacity:0; animation:floatUp linear infinite; }
+@keyframes floatUp {
+  0%   { transform:translateY(0) rotate(0deg); opacity:0; }
+  8%   { opacity:var(--m-op,0.45); }
+  85%  { opacity:var(--m-op,0.45); }
+  100% { transform:translateY(-115vh) rotate(var(--m-rot,360deg)); opacity:0; }
+}
+
+/* Top bar */
+.top-bar { position:relative; z-index:5; padding:16px 56px; display:flex; justify-content:center; align-items:center;
+  background:linear-gradient(180deg,rgba(4,8,18,0.85) 0%,transparent 100%);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
+.top-bar-inner { display:flex; align-items:center; gap:40px; }
+.org-logos { display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
+.org { display:flex; align-items:center; gap:12px; }
+.org-icon { width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); }
+.org-name { font-size:11px; line-height:1.35; color:rgba(255,255,255,0.35); }
+.org-name strong { color:rgba(255,255,255,0.7); font-weight:500; }
+.org-divider { width:1px; height:28px; background:rgba(255,255,255,0.06); }
+.top-version { font-size:11px; color:rgba(255,255,255,0.15); letter-spacing:1px; }
+
+/* Hero center */
+.hero-center { position:relative; z-index:4; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px 60px 10px; }
+.hero-content { width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; align-items:center; }
+.badge { display:inline-flex; align-items:center; gap:8px; padding:5px 18px; border-radius:20px; font-size:11px; font-weight:500; background:rgba(0,150,255,0.08); border:1px solid rgba(0,150,255,0.15); color:#64b5f6; letter-spacing:1.5px; margin-bottom:18px; }
+.badge-dot { width:6px; height:6px; border-radius:50%; background:#64b5f6; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.15;} }
+.hero-icon { font-size:56px; margin-bottom:8px; filter:drop-shadow(0 0 50px rgba(0,150,255,0.3)); }
+.hero-title { font-size:54px; font-weight:700; line-height:1.1; letter-spacing:-0.5px; }
+.hero-title .grad { background:linear-gradient(135deg,#e8eef4 0%,#8cc4f0 35%,#56c8f7 65%,#38d0d8 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-sub { font-size:20px; color:rgba(255,255,255,0.3); margin-top:10px; font-weight:300; letter-spacing:5px; }
+.hero-desc { max-width:640px; margin-top:14px; font-size:14px; color:rgba(255,255,255,0.35); line-height:1.8; }
+.hero-desc strong { color:rgba(255,255,255,0.6); font-weight:500; }
+
+/* Pipeline */
+.pipeline { display:flex; align-items:center; gap:10px; margin-top:22px; padding:12px 28px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); backdrop-filter:blur(8px); }
+.p-step { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.p-icon { font-size:20px; }
+.p-label { font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:0.8px; white-space:nowrap; font-weight:500; }
+.p-arrow { color:rgba(255,255,255,0.1); font-size:16px; }
+
+/* Stat row - enhanced visibility */
+.stat-row { display:flex; gap:30px; margin-top:28px; flex-wrap:wrap; justify-content:center; width:100%; }
+.stat-card { display:flex; flex-direction:column; align-items:center; flex:1; min-width:80px; max-width:155px; padding:14px 8px 6px; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(14px); text-align:center; text-decoration:none; transition:all 0.3s; cursor:pointer; position:relative; justify-content:space-between; }
+.stat-card:hover { background:rgba(255,255,255,0.07); border-color:rgba(0,150,255,0.2); transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.3); }
+.stat-card:active { transform:translateY(0); }
+.stat-num { font-size:26px; font-weight:700; background:linear-gradient(135deg,#64b5f6,#4dd0e1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1.3; margin-bottom:6px; }
+.stat-lbl-en { font-size:11px; color:rgba(255,255,255,0.85); letter-spacing:0.3px; font-weight:500; line-height:1.4; white-space:nowrap; }
+.stat-lbl-cn { font-size:14px; color:rgba(255,255,255,0.6); letter-spacing:0.5px; font-weight:400; margin-top:4px; line-height:1.5; }
+.stat-arrow { display:inline-flex; align-items:center; justify-content:center; margin-top:8px; width:36px; height:30px; border-radius:14px; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.25); font-size:20px; font-weight:700; transition:all 0.3s; line-height:1; flex-shrink:0; }
+.stat-card:hover .stat-arrow { background:rgba(0,150,255,0.2); color:#64b5f6; width:40px; }
+
+
+/* Scroll hint */
+.scroll-hint { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); z-index:4; display:flex; flex-direction:column; align-items:center; gap:4px; color:rgba(255,255,255,0.08); font-size:9px; letter-spacing:2px; opacity:0.6; }
+.scroll-line { width:1px; height:28px; background:linear-gradient(180deg,rgba(255,255,255,0.15),transparent); }
+
+/* ═══════════════════════════════════════════
+   CONTENT SECTION
+   ═══════════════════════════════════════════ */
+.content { position:relative; z-index:1; padding:8px 60px 60px; background:#040812; }
+.content-inner { max-width:820px; margin:0 auto; }
+.charts { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.chart-card { padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); }
+.chart-card h3 { font-size:13px; color:rgba(255,255,255,0.4); font-weight:400; margin-bottom:14px; letter-spacing:0.3px; }
+.chart-card h3 span { color:#64b5f6; }
+.section-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.section-title { font-size:15px; color:rgba(255,255,255,0.45); letter-spacing:0.3px; }
+.section-title span { color:#64b5f6; }
+.section-link { font-size:11px; color:rgba(255,255,255,0.2); transition:color 0.2s; }
+.section-link:hover { color:#64b5f6; }
+
+/* Bar charts */
+.bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.bar-label { width:80px; font-size:11px; color:rgba(255,255,255,0.35); text-align:right; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.bar-track { flex:1; height:14px; border-radius:7px; background:rgba(255,255,255,0.02); overflow:hidden; }
+.bar-fill { height:100%; border-radius:7px; transition:width 1.2s ease; opacity:0.75; }
+.bar-value { width:24px; font-size:11px; color:rgba(255,255,255,0.25); font-family:'JetBrains Mono',monospace; text-align:right; }
+
+/* Compound strip */
+.compound-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:30px; }
+.cpd-card { display:flex; flex-direction:column; padding:14px 16px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); transition:all 0.25s; text-decoration:none; }
+.cpd-card:hover { background:rgba(255,255,255,0.04); border-color:rgba(0,150,255,0.12); transform:translateY(-2px); }
+.cpd-card-row { display:flex; gap:10px; align-items:flex-start; }
+.cpd-card-img { width:36px; height:36px; border-radius:5px; overflow:hidden; background:rgba(255,255,255,0.03); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.cpd-card-img img { width:100%; height:100%; object-fit:contain; }
+.cpd-card-img .cfb { font-size:14px; color:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.cpd-card-info { flex:1; min-width:0; }
+.cpd-card-name { font-size:13px; font-weight:500; color:rgba(255,255,255,0.7); line-height:1.3; margin-bottom:1px; display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden; }
+.cpd-card-meta { font-size:11px; color:rgba(255,255,255,0.25); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cpd-card-ct { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:500; margin-top:6px; }
+
+/* Responsive */
+@media(max-width:900px){
+  .top-bar{flex-direction:column;padding:12px 20px;}
+  .top-bar-inner{flex-direction:column;gap:8px;}
+  .org-logos{justify-content:center;gap:16px;}
+  .hero-content{max-width:100%;}
+  .hero-title{font-size:36px;}
+  .hero-center{padding:20px 24px 10px;}
+  .stat-card{min-width:85px;max-width:none;padding:10px 8px;}
+  .stat-num{font-size:22px;}
+  .stat-lbl-en{font-size:11px;}.stat-lbl-cn{font-size:9px;}
+  .stat-arrow{width:28px;height:22px;font-size:15px;}
+  .content{padding:16px 20px 40px;}
+  .charts{grid-template-columns:1fr;}
+  .compound-strip{grid-template-columns:repeat(2,1fr);}
+  .depth-zones{left:12px;}
+  .zone-text{font-size:11px;letter-spacing:1.5px;}
+  .zone-line{width:18px;}
+}
+@media(max-width:520px){
+  .hero-title{font-size:26px;}
+  .hero-sub{font-size:14px;letter-spacing:2px;}
+  .pipeline{flex-wrap:wrap;justify-content:center;gap:6px;}
+  .stat-card{padding:8px 8px;min-width:70px;}
+  .stat-num{font-size:20px;}
+  .stat-lbl-en{font-size:11px;}.stat-lbl-cn{font-size:9px;}
+  .stat-card{min-width:72px;padding:8px 6px;}
+  .stat-num{font-size:18px;}
+  .stat-lbl-en{font-size:11px;}.stat-lbl-cn{font-size:10px;}
+  .stat-arrow{width:24px;height:18px;font-size:13px;}
+  .compound-strip{grid-template-columns:1fr;}
+  .depth-zones{display:none;}
+}
+
+/* ── Geographic Distribution (injected) ── */
+.geo-card { margin-top:40px; padding:18px 22px; border-radius:12px; background:rgba(255,255,255,0.015); border:1px solid rgba(255,255,255,0.03); }
+.geo-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px; }
+.geo-title { font-size:13px; color:rgba(255,255,255,0.4); font-weight:400; letter-spacing:0.3px; }
+.geo-title span { color:#64b5f6; }
+.geo-sub { font-size:11px; color:rgba(255,255,255,0.2); }
+#geoHomeMap { width:100%; height:auto; display:block; background:#0b1a2e; border-radius:8px; }
+#geoHomeMap .land-dot { fill:#4a7ba8; opacity:0.95; }
+#geoHomeMap .ocean-marker { stroke:#fff; stroke-width:1; cursor:pointer; transition:r 0.15s; }
+#geoHomeMap .ocean-marker:hover { stroke:#ffd166; stroke-width:2; }
+#geoHomeMap .marker-label { font-size:8px; fill:#eaf4ff; font-family:inherit; text-anchor:middle; pointer-events:none; opacity:0.85; text-shadow:0 0 3px #04101f; }
+#geoHomeMap .ocean-marker:hover + .marker-label, #geoHomeMap .ocean-marker:hover ~ .marker-label { opacity:1; }
+.geo-foot { display:flex; align-items:center; gap:14px; margin-top:12px; flex-wrap:wrap; }
+.geo-legend { display:flex; align-items:center; gap:5px; font-size:10px; color:rgba(255,255,255,0.35); }
+.geo-legend i { width:9px; height:9px; border-radius:50%; display:inline-block; }
+.geo-hint { margin-left:auto; font-size:10px; color:rgba(100,181,246,0.6); }
+@media (max-width:640px){ .geo-foot{flex-direction:column;align-items:flex-start;} }
+
+</style>
+<style>.hero{overflow:hidden}</style><style>.compound-strip{grid-template-columns:repeat(4,minmax(0,1fr))}.cpd-card{min-width:0}@media(max-width:800px){.compound-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}</style><link data-site-comfort="v1" href="assets/css/site-comfort-v1.css?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" rel="stylesheet"/><link href="assets/css/collection-scope-v1.css?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" rel="stylesheet"/><link href="assets/css/frontend-consistency-v1.css?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" rel="stylesheet"/><link href="assets/css/chart-theme-v1.css?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" rel="stylesheet"/><script src="assets/js/chart-theme-v1.js?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276"></script><link href="assets/css/geographic-map-v2.css?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" rel="stylesheet"/>
+<script src="assets/data/site_catalog_v1.js?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276"></script><script defer="True" src="assets/js/site-home-v1.js?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276"></script>
+<style>
+/* User-approved release scope disclosure; original hero and page typography stay intact. */
+html[data-site-comfort-home][data-home-content-polish] .collection-scope-note>.home-scope-details{grid-column:1/-1;min-width:0}
+html[data-site-comfort-home][data-home-content-polish] .home-scope-details>summary{display:list-item;cursor:pointer;width:fit-content}
+</style>
+<meta content="f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276" name="site-generation"/></head>
+<body>
+<script src="assets/js/geographic-map-v2.js?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276"></script>
+<div class="hero">
+<!-- Sunlight rays -->
+<div class="light-rays">
+<div class="ray ray-1"></div>
+<div class="ray ray-2"></div>
+<div class="ray ray-3"></div>
+<div class="ray ray-4"></div>
+<div class="ray ray-5"></div>
+</div>
+<div class="tech-grid"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<!-- Depth zones -->
+<div class="depth-zones">
+<div class="zone-item"><div class="zone-line" style="background:rgba(255,255,255,0.5);"></div><div class="zone-text">SUNLIGHT 0–200m</div></div>
+<div class="zone-item"><div class="zone-line" style="background:rgba(255,255,255,0.4);"></div><div class="zone-text">TWILIGHT 200–1000m</div></div>
+<div class="zone-item"><div class="zone-line" style="background:rgba(255,255,255,0.3);"></div><div class="zone-text">MIDNIGHT 1000–3000m</div></div>
+<div class="zone-item"><div class="zone-line" style="background:rgba(255,255,255,0.2);"></div><div class="zone-text">ABYSSAL 3000–6000m</div></div>
+<div class="zone-item"><div class="zone-line" style="background:rgba(255,255,255,0.15);"></div><div class="zone-text">HADAL 6000m+</div></div>
+</div>
+<!-- Floating microbes -->
+<div id="microbes"></div>
+<!-- Top bar -->
+<div class="top-bar">
+<div class="top-bar-inner">
+<div class="org-logos">
+<div class="org">
+<div class="org-icon"><svg height="24" viewbox="0 0 40 40" width="24"><circle cx="20" cy="20" fill="none" r="18" stroke="rgba(100,181,246,0.35)" stroke-width="1.2"></circle><path d="M10 20 Q20 5 30 20 Q20 35 10 20Z" fill="rgba(100,181,246,0.06)" stroke="rgba(100,181,246,0.2)" stroke-width="0.6"></path><circle cx="20" cy="14" fill="rgba(100,181,246,0.4)" r="2.5"></circle><circle cx="15" cy="24" fill="rgba(100,181,246,0.25)" r="1.8"></circle><circle cx="26" cy="22" fill="rgba(100,181,246,0.3)" r="2"></circle></svg></div>
+<div class="org-name"><strong>Research Center for Deepsea Bioresources, Sanya</strong></div>
+</div>
+<div class="org-divider"></div>
+<div class="org">
+<div class="org-icon"><svg height="24" viewbox="0 0 40 40" width="24"><circle cx="20" cy="20" fill="none" r="14" stroke="rgba(77,208,225,0.35)" stroke-width="1.2"></circle><path d="M12 20 L18 26 L28 14" fill="none" stroke="rgba(77,208,225,0.55)" stroke-linecap="round" stroke-width="2"></path></svg></div>
+<div class="org-name"><strong>Ruijin Hospital · Center for Structural Biology</strong></div>
+</div>
+<div class="org-divider"></div>
+<div class="org">
+<div class="org-icon"><svg height="24" viewbox="0 0 40 40" width="24"><path d="M20 5 L20 35 M5 20 L35 20" stroke="rgba(239,83,80,0.3)" stroke-width="1"></path><circle cx="20" cy="20" fill="none" r="14" stroke="rgba(239,83,80,0.35)" stroke-width="1.2"></circle><text fill="rgba(239,83,80,0.5)" font-size="13" font-weight="bold" text-anchor="middle" x="20" y="24">R</text></svg></div>
+<div class="org-name"><strong>Ruijin Hospital, Shanghai Jiao Tong Univ.</strong></div>
+</div>
+</div>
+<div class="top-version">v2.0</div>
+</div>
+</div>
+<!-- Hero center -->
+<div class="hero-center">
+<div class="hero-content">
+<div class="badge"><span class="badge-dot"></span> DEEP-SEA NATURAL PRODUCTS DATABASE</div>
+<div class="hero-icon">🌊</div>
+<h1 class="hero-title"><span class="grad">Deep-Sea Compound Database</span></h1>
+<div class="hero-sub">Marine sources · Compound structures · Experimental evidence</div>
+<p class="hero-desc" id="heroDesc">A collection of <strong>1236</strong> public compound records · <strong>269</strong> source index entries · <strong>499</strong> reference catalog records</p>
+<!-- Pipeline -->
+<div class="pipeline">
+<div class="p-step"><span class="p-icon">🌊</span><span class="p-label">DEEP-SEA</span></div>
+<span class="p-arrow">→</span>
+<div class="p-step"><span class="p-icon">🧫</span><span class="p-label">MICROBE</span></div>
+<span class="p-arrow">→</span>
+<div class="p-step"><span class="p-icon">🧬</span><span class="p-label">COMPOUND</span></div>
+<span class="p-arrow">→</span>
+<div class="p-step"><span class="p-icon">🎯</span><span class="p-label">TARGET</span></div>
+<span class="p-arrow">→</span>
+<div class="p-step"><span class="p-icon">💊</span><span class="p-label">DRUG LEAD</span></div>
+</div>
+<!-- Stat cards (static fallback for file:// mode, replaced by JS) -->
+<div class="stat-row" id="statRow">
+<a class="stat-card" data-site-metric="public_records" href="pages/browse-compounds.html" title="Public compound records."><div class="stat-num">1236</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">💊 Compounds</div><div class="stat-arrow">→</div></a>
+<a class="stat-card" data-site-metric="source_entries" href="pages/browse-strains.html" title="Biological source profiles, including microbial strains and other recorded sources."><div class="stat-num">269</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">🧫 Biological Sources</div><div class="stat-arrow">→</div></a>
+<a class="stat-card" data-site-metric="target_annotation_nodes" href="pages/browse-targets.html" title="Distinct recorded target names or descriptions; this is not a count of verified drug targets."><div class="stat-num">183</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">🎯 Target Annotations</div><div class="stat-arrow">→</div></a>
+<a class="stat-card" data-site-metric="display_activity_records" href="pages/browse-phenotypes.html" title="5,312 activity records displayed on public compound pages; 3,772 evidence rows admitted to the pharmacology workbench."><div class="stat-num">5312</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">📊 Bioactivity Records</div><div class="stat-arrow">→</div></a>
+<a class="stat-card" data-site-metric="chemotype_labels" href="pages/browse-chemotypes.html" title="Distinct recorded chemical classes."><div class="stat-num">11</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">🧪 Chemical Classes</div><div class="stat-arrow">→</div></a>
+<a class="stat-card" data-site-metric="reference_catalog_records" href="pages/browse-references.html" title="Reference catalog entries."><div class="stat-num">499</div><div class="stat-lbl-en" style="max-width:100%;white-space:normal">📚 References</div><div class="stat-arrow">→</div></a>
+</div>
+</div>
+</div>
+<div class="scroll-hint"><span>SCROLL</span><div class="scroll-line"></div></div>
+</div>
+<style>
+.center-card{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding:22px 26px;background:linear-gradient(120deg,#0d1b2a 0%,#123a63 60%,#1565c0 130%);border-radius:16px;text-decoration:none;color:#fff;box-shadow:0 8px 24px rgba(13,27,42,.25);transition:transform .2s, box-shadow .2s;max-width:1100px;}
+.center-card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(13,27,42,.35);}
+.center-card-left{flex:1;min-width:0;}
+.center-card-title{font-size:20px;font-weight:700;letter-spacing:.3px;}
+.center-card-sub{font-size:13px;opacity:.85;margin-top:4px;}
+.center-card-link{display:inline-block;margin-top:12px;font-size:13px;color:#fff;background:rgba(255,255,255,.16);padding:6px 14px;border-radius:20px;}
+.center-card-right{text-align:center;flex-shrink:0;}
+.center-card-num{font-size:44px;font-weight:800;font-family:var(--font-mono);line-height:1;}
+.center-card-unit{font-size:12px;opacity:.8;margin-top:2px;letter-spacing:1px;}
+@media(max-width:600px){.center-card{flex-direction:column;align-items:flex-start;}.center-card-num{font-size:34px;}}
+</style>
+<!-- Content -->
+<div class="content">
+<div class="content-inner">
+<aside class="collection-scope-note"><details class="home-scope-details"><summary><strong>Collection scope</strong></summary><p>Archive: <span data-scope-count="archive">1242</span> · Public: <span data-scope-count="public">1236</span> · Supported: <span data-scope-count="supported">1115</span> · Scope pending: <span data-scope-count="pending">121</span> · Withheld: <span data-scope-count="withheld">6</span>.</p><a href="pages/collection-scope.html">View collection scope and evidence ↗</a></details></aside><section aria-labelledby="home-research-title" class="home-research-resources" id="home-research-resources"><div class="section-header">
+<div class="section-title" id="home-research-title">🔬 <span>Research Tools</span></div>
+<a class="section-link" href="pages/browse-center.html">RCDB compounds ↗</a>
+</div><div class="home-resource-grid"><a aria-label="Research Workbench: compare compounds and explore evidence" class="home-resource-card home-workbench-card" href="pages/research-workbench.html?view=explore" id="home-pharmacology-link"><span class="home-resource-kind">RESEARCH TOOLS</span><div class="home-resource-title">Research Workbench</div><p class="home-resource-description">Compare structures and explore experimental evidence.</p><span class="home-resource-action">Open workbench <span aria-hidden="true">↗</span></span></a><a class="center-card home-resource-card" href="pages/rcdb-research.html"><span class="home-resource-kind">RCDB RESOURCES</span>
+<div class="center-card-left">
+<div class="center-card-title">RCDB Compounds</div>
+<div class="center-card-sub">Compounds reported in RCDB publications, including institutional and collaborative strains.</div>
+<div class="center-card-link">Explore RCDB research →</div>
+</div>
+<div class="center-card-right">
+<div class="center-card-num" id="centerCount">58</div>
+<div class="center-card-unit">compounds</div>
+</div>
+</a></div></section><div class="section-header" data-home-section="compounds">
+<div class="section-title">🧪 <span>Compounds</span></div>
+<a class="section-link" href="pages/browse-compounds.html">View all →</a>
+</div><div class="compound-strip" id="latestStrip"></div><div class="section-header" data-home-section="statistics">
+<div class="section-title">📊 <span>Chemical Class</span> Distribution</div>
+<a class="section-link" href="pages/browse-chemotypes.html">View all →</a>
+</div>
+<div class="charts">
+<div class="chart-card">
+<h3>By Compound Count</h3>
+<div id="chart-chemotype"></div>
+</div>
+<div class="chart-card">
+<h3>By <span>Depth</span> Zone</h3>
+<div id="chart-depth"></div><details class="chart-method"><summary>Counting method</summary><p class="index-grain-note">Depth bands use sources with supported scope and permitted depth analysis. Missing, unreported or cross-band depths remain Unknown. Counts represent compound records, not independent sampling events.</p></details>
+</div>
+</div>
+<div class="section-header" style="margin-top:40px;">
+<div class="section-title">🌍 <span>Geographic</span> Distribution</div>
+<a class="section-link" href="pages/browse-locations.html">View all →</a>
+</div>
+<div class="geo-card classic-map">
+<svg id="geoHomeMap" preserveaspectratio="xMidYMid meet" viewbox="0 0 1000 500"></svg><div class="classic-map-selection" data-classic-map-selection="" hidden=""></div>
+<div aria-label="Map legend" class="classic-map-legend">
+<span title="Illustrative region centre; not sampling coordinates or geographic boundaries."><i style="background:#0077b6"></i>Ocean / sea region</span>
+<span title="Illustrative region centre; not sampling coordinates or geographic boundaries."><i style="background:#5e35b1"></i>Trench region</span>
+<span title="Illustrative region centre; not sampling coordinates or geographic boundaries."><i style="background:#e65100"></i>Regional site</span>
+<span title="Qualified reported coordinates. Shared coordinates do not establish independent sampling events."><i class="coordinate-key"></i>Reported coordinates</span>
+</div>
+</div>
+<details class="home-data-license" id="home-data-license"><summary>Data sources &amp; licences</summary><p>Some records originate from NPAtlas 2024_09 (CC BY-NC 4.0) and CMNPD 1.0 (CC BY-NC-SA 4.0). Original publications and existing data retain their applicable rights and licences.</p></details></div>
+</div>
+<!-- Data scripts -->
+<script src="assets/js/depth-contract-v1.js?site_generation=f10b8461259b5542b23aac2e006b22a7caad086af91de851ab8ffad004d6a276"></script>
+<script>
+/* world_map.js inlined for home geo map */
+// DeepSea World Map — point-dot land grid + equirectangular projection helpers
+// Auto-generated 2026-08-08
+var WORLD_DOTS = [[319.4, 446.7], [319.4, 436.7], [327.8, 436.7], [336.1, 436.7], [311.1, 426.7], [319.4, 426.7], [327.8, 426.7], [336.1, 426.7], [311.1, 416.7], [319.4, 416.7], [327.8, 416.7], [336.1, 416.7], [344.4, 416.7], [311.1, 406.7], [319.4, 406.7], [327.8, 406.7], [336.1, 406.7], [344.4, 406.7], [961.1, 406.7], [969.4, 406.7], [977.8, 406.7], [986.1, 406.7], [302.8, 396.7], [311.1, 396.7], [319.4, 396.7], [327.8, 396.7], [336.1, 396.7], [344.4, 396.7], [977.8, 396.7], [986.1, 396.7], [302.8, 386.7], [311.1, 386.7], [319.4, 386.7], [327.8, 386.7], [336.1, 386.7], [344.4, 386.7], [352.8, 386.7], [869.4, 386.7], [877.8, 386.7], [886.1, 386.7], [894.4, 386.7], [902.8, 386.7], [911.1, 386.7], [302.8, 376.7], [311.1, 376.7], [319.4, 376.7], [327.8, 376.7], [336.1, 376.7], [344.4, 376.7], [352.8, 376.7], [552.8, 376.7], [561.1, 376.7], [569.4, 376.7], [577.8, 376.7], [586.1, 376.7], [827.8, 376.7], [836.1, 376.7], [844.4, 376.7], [852.8, 376.7], [861.1, 376.7], [869.4, 376.7], [877.8, 376.7], [886.1, 376.7], [894.4, 376.7], [902.8, 376.7], [911.1, 376.7], [919.4, 376.7], [927.8, 376.7], [294.4, 366.7], [302.8, 366.7], [311.1, 366.7], [319.4, 366.7], [327.8, 366.7], [336.1, 366.7], [344.4, 366.7], [352.8, 366.7], [536.1, 366.7], [544.4, 366.7], [552.8, 366.7], [561.1, 366.7], [569.4, 366.7], [577.8, 366.7], [586.1, 366.7], [594.4, 366.7], [819.4, 366.7], [827.8, 366.7], [836.1, 366.7], [844.4, 366.7], [852.8, 366.7], [861.1, 366.7], [869.4, 366.7], [877.8, 366.7], [886.1, 366.7], [894.4, 366.7], [902.8, 366.7], [911.1, 366.7], [919.4, 366.7], [927.8, 366.7], [294.4, 356.7], [302.8, 356.7], [311.1, 356.7], [319.4, 356.7], [327.8, 356.7], [336.1, 356.7], [344.4, 356.7], [352.8, 356.7], [361.1, 356.7], [536.1, 356.7], [544.4, 356.7], [552.8, 356.7], [561.1, 356.7], [569.4, 356.7], [577.8, 356.7], [586.1, 356.7], [594.4, 356.7], [819.4, 356.7], [827.8, 356.7], [836.1, 356.7], [844.4, 356.7], [852.8, 356.7], [861.1, 356.7], [869.4, 356.7], [877.8, 356.7], [886.1, 356.7], [894.4, 356.7], [902.8, 356.7], [911.1, 356.7], [919.4, 356.7], [294.4, 346.7], [302.8, 346.7], [311.1, 346.7], [319.4, 346.7], [327.8, 346.7], [336.1, 346.7], [344.4, 346.7], [352.8, 346.7], [361.1, 346.7], [369.4, 346.7], [544.4, 346.7], [552.8, 346.7], [561.1, 346.7], [569.4, 346.7], [577.8, 346.7], [586.1, 346.7], [594.4, 346.7], [627.8, 346.7], [819.4, 346.7], [827.8, 346.7], [836.1, 346.7], [844.4, 346.7], [852.8, 346.7], [861.1, 346.7], [869.4, 346.7], [877.8, 346.7], [886.1, 346.7], [894.4, 346.7], [902.8, 346.7], [911.1, 346.7], [919.4, 346.7], [286.1, 336.7], [294.4, 336.7], [302.8, 336.7], [311.1, 336.7], [319.4, 336.7], [327.8, 336.7], [336.1, 336.7], [344.4, 336.7], [352.8, 336.7], [361.1, 336.7], [369.4, 336.7], [544.4, 336.7], [552.8, 336.7], [561.1, 336.7], [569.4, 336.7], [577.8, 336.7], [586.1, 336.7], [594.4, 336.7], [627.8, 336.7], [636.1, 336.7], [819.4, 336.7], [827.8, 336.7], [836.1, 336.7], [844.4, 336.7], [852.8, 336.7], [861.1, 336.7], [869.4, 336.7], [877.8, 336.7], [886.1, 336.7], [894.4, 336.7], [902.8, 336.7], [911.1, 336.7], [286.1, 326.7], [294.4, 326.7], [302.8, 326.7], [311.1, 326.7], [319.4, 326.7], [327.8, 326.7], [336.1, 326.7], [344.4, 326.7], [352.8, 326.7], [361.1, 326.7], [369.4, 326.7], [377.8, 326.7], [544.4, 326.7], [552.8, 326.7], [561.1, 326.7], [569.4, 326.7], [577.8, 326.7], [586.1, 326.7], [594.4, 326.7], [602.8, 326.7], [627.8, 326.7], [636.1, 326.7], [827.8, 326.7], [836.1, 326.7], [844.4, 326.7], [852.8, 326.7], [861.1, 326.7], [869.4, 326.7], [877.8, 326.7], [886.1, 326.7], [894.4, 326.7], [902.8, 326.7], [277.8, 316.7], [286.1, 316.7], [294.4, 316.7], [302.8, 316.7], [311.1, 316.7], [319.4, 316.7], [327.8, 316.7], [336.1, 316.7], [344.4, 316.7], [352.8, 316.7], [361.1, 316.7], [369.4, 316.7], [377.8, 316.7], [544.4, 316.7], [552.8, 316.7], [561.1, 316.7], [569.4, 316.7], [577.8, 316.7], [586.1, 316.7], [594.4, 316.7], [602.8, 316.7], [627.8, 316.7], [827.8, 316.7], [836.1, 316.7], [844.4, 316.7], [852.8, 316.7], [861.1, 316.7], [869.4, 316.7], [877.8, 316.7], [886.1, 316.7], [894.4, 316.7], [277.8, 306.7], [286.1, 306.7], [294.4, 306.7], [302.8, 306.7], [311.1, 306.7], [319.4, 306.7], [327.8, 306.7], [336.1, 306.7], [344.4, 306.7], [352.8, 306.7], [361.1, 306.7], [369.4, 306.7], [377.8, 306.7], [386.1, 306.7], [536.1, 306.7], [544.4, 306.7], [552.8, 306.7], [561.1, 306.7], [569.4, 306.7], [577.8, 306.7], [586.1, 306.7], [594.4, 306.7], [602.8, 306.7], [611.1, 306.7], [852.8, 306.7], [861.1, 306.7], [869.4, 306.7], [277.8, 296.7], [286.1, 296.7], [294.4, 296.7], [302.8, 296.7], [311.1, 296.7], [319.4, 296.7], [327.8, 296.7], [336.1, 296.7], [344.4, 296.7], [352.8, 296.7], [361.1, 296.7], [369.4, 296.7], [377.8, 296.7], [386.1, 296.7], [536.1, 296.7], [544.4, 296.7], [552.8, 296.7], [561.1, 296.7], [569.4, 296.7], [577.8, 296.7], [586.1, 296.7], [594.4, 296.7], [602.8, 296.7], [611.1, 296.7], [619.4, 296.7], [277.8, 286.7], [286.1, 286.7], [294.4, 286.7], [302.8, 286.7], [311.1, 286.7], [319.4, 286.7], [327.8, 286.7], [336.1, 286.7], [344.4, 286.7], [352.8, 286.7], [361.1, 286.7], [369.4, 286.7], [377.8, 286.7], [527.8, 286.7], [536.1, 286.7], [544.4, 286.7], [552.8, 286.7], [561.1, 286.7], [569.4, 286.7], [577.8, 286.7], [586.1, 286.7], [594.4, 286.7], [602.8, 286.7], [611.1, 286.7], [619.4, 286.7], [627.8, 286.7], [277.8, 276.7], [286.1, 276.7], [294.4, 276.7], [302.8, 276.7], [311.1, 276.7], [319.4, 276.7], [327.8, 276.7], [336.1, 276.7], [344.4, 276.7], [352.8, 276.7], [361.1, 276.7], [369.4, 276.7], [527.8, 276.7], [536.1, 276.7], [544.4, 276.7], [552.8, 276.7], [561.1, 276.7], [569.4, 276.7], [577.8, 276.7], [586.1, 276.7], [594.4, 276.7], [602.8, 276.7], [611.1, 276.7], [619.4, 276.7], [627.8, 276.7], [636.1, 276.7], [286.1, 266.7], [294.4, 266.7], [302.8, 266.7], [311.1, 266.7], [319.4, 266.7], [327.8, 266.7], [336.1, 266.7], [344.4, 266.7], [352.8, 266.7], [519.4, 266.7], [527.8, 266.7], [536.1, 266.7], [544.4, 266.7], [552.8, 266.7], [561.1, 266.7], [569.4, 266.7], [577.8, 266.7], [586.1, 266.7], [594.4, 266.7], [602.8, 266.7], [611.1, 266.7], [619.4, 266.7], [627.8, 266.7], [636.1, 266.7], [286.1, 256.7], [294.4, 256.7], [302.8, 256.7], [311.1, 256.7], [319.4, 256.7], [327.8, 256.7], [336.1, 256.7], [511.1, 256.7], [519.4, 256.7], [527.8, 256.7], [536.1, 256.7], [544.4, 256.7], [552.8, 256.7], [561.1, 256.7], [569.4, 256.7], [577.8, 256.7], [586.1, 256.7], [594.4, 256.7], [602.8, 256.7], [611.1, 256.7], [619.4, 256.7], [627.8, 256.7], [636.1, 256.7], [286.1, 246.7], [294.4, 246.7], [302.8, 246.7], [311.1, 246.7], [319.4, 246.7], [327.8, 246.7], [477.8, 246.7], [486.1, 246.7], [494.4, 246.7], [502.8, 246.7], [511.1, 246.7], [519.4, 246.7], [527.8, 246.7], [536.1, 246.7], [544.4, 246.7], [552.8, 246.7], [561.1, 246.7], [569.4, 246.7], [577.8, 246.7], [586.1, 246.7], [594.4, 246.7], [602.8, 246.7], [611.1, 246.7], [619.4, 246.7], [627.8, 246.7], [636.1, 246.7], [294.4, 236.7], [302.8, 236.7], [311.1, 236.7], [469.4, 236.7], [477.8, 236.7], [486.1, 236.7], [494.4, 236.7], [502.8, 236.7], [511.1, 236.7], [519.4, 236.7], [527.8, 236.7], [536.1, 236.7], [544.4, 236.7], [552.8, 236.7], [561.1, 236.7], [569.4, 236.7], [577.8, 236.7], [586.1, 236.7], [594.4, 236.7], [602.8, 236.7], [611.1, 236.7], [619.4, 236.7], [627.8, 236.7], [636.1, 236.7], [719.4, 236.7], [727.8, 236.7], [736.1, 236.7], [744.4, 236.7], [752.8, 236.7], [461.1, 226.7], [469.4, 226.7], [477.8, 226.7], [486.1, 226.7], [494.4, 226.7], [502.8, 226.7], [511.1, 226.7], [519.4, 226.7], [527.8, 226.7], [536.1, 226.7], [544.4, 226.7], [552.8, 226.7], [561.1, 226.7], [569.4, 226.7], [577.8, 226.7], [586.1, 226.7], [594.4, 226.7], [602.8, 226.7], [611.1, 226.7], [619.4, 226.7], [702.8, 226.7], [711.1, 226.7], [719.4, 226.7], [727.8, 226.7], [736.1, 226.7], [744.4, 226.7], [752.8, 226.7], [761.1, 226.7], [769.4, 226.7], [452.8, 216.7], [461.1, 216.7], [469.4, 216.7], [477.8, 216.7], [486.1, 216.7], [494.4, 216.7], [502.8, 216.7], [511.1, 216.7], [519.4, 216.7], [527.8, 216.7], [536.1, 216.7], [544.4, 216.7], [552.8, 216.7], [561.1, 216.7], [569.4, 216.7], [577.8, 216.7], [586.1, 216.7], [594.4, 216.7], [602.8, 216.7], [611.1, 216.7], [694.4, 216.7], [702.8, 216.7], [711.1, 216.7], [719.4, 216.7], [727.8, 216.7], [736.1, 216.7], [744.4, 216.7], [752.8, 216.7], [761.1, 216.7], [769.4, 216.7], [777.8, 216.7], [469.4, 206.7], [477.8, 206.7], [486.1, 206.7], [494.4, 206.7], [502.8, 206.7], [511.1, 206.7], [519.4, 206.7], [527.8, 206.7], [536.1, 206.7], [544.4, 206.7], [552.8, 206.7], [561.1, 206.7], [569.4, 206.7], [577.8, 206.7], [586.1, 206.7], [594.4, 206.7], [602.8, 206.7], [694.4, 206.7], [702.8, 206.7], [711.1, 206.7], [719.4, 206.7], [727.8, 206.7], [736.1, 206.7], [744.4, 206.7], [752.8, 206.7], [761.1, 206.7], [769.4, 206.7], [777.8, 206.7], [219.4, 196.7], [227.8, 196.7], [236.1, 196.7], [244.4, 196.7], [252.8, 196.7], [477.8, 196.7], [486.1, 196.7], [494.4, 196.7], [502.8, 196.7], [511.1, 196.7], [519.4, 196.7], [527.8, 196.7], [536.1, 196.7], [544.4, 196.7], [552.8, 196.7], [561.1, 196.7], [569.4, 196.7], [577.8, 196.7], [586.1, 196.7], [594.4, 196.7], [694.4, 196.7], [702.8, 196.7], [711.1, 196.7], [719.4, 196.7], [727.8, 196.7], [736.1, 196.7], [744.4, 196.7], [752.8, 196.7], [761.1, 196.7], [769.4, 196.7], [777.8, 196.7], [786.1, 196.7], [202.8, 186.7], [211.1, 186.7], [219.4, 186.7], [227.8, 186.7], [236.1, 186.7], [244.4, 186.7], [252.8, 186.7], [261.1, 186.7], [486.1, 186.7], [494.4, 186.7], [502.8, 186.7], [511.1, 186.7], [519.4, 186.7], [527.8, 186.7], [536.1, 186.7], [544.4, 186.7], [552.8, 186.7], [561.1, 186.7], [569.4, 186.7], [577.8, 186.7], [586.1, 186.7], [594.4, 186.7], [669.4, 186.7], [677.8, 186.7], [686.1, 186.7], [694.4, 186.7], [702.8, 186.7], [711.1, 186.7], [719.4, 186.7], [727.8, 186.7], [736.1, 186.7], [744.4, 186.7], [752.8, 186.7], [761.1, 186.7], [769.4, 186.7], [777.8, 186.7], [786.1, 186.7], [794.4, 186.7], [802.8, 186.7], [811.1, 186.7], [819.4, 186.7], [194.4, 176.7], [202.8, 176.7], [211.1, 176.7], [219.4, 176.7], [227.8, 176.7], [236.1, 176.7], [244.4, 176.7], [252.8, 176.7], [261.1, 176.7], [269.4, 176.7], [486.1, 176.7], [494.4, 176.7], [502.8, 176.7], [511.1, 176.7], [519.4, 176.7], [527.8, 176.7], [536.1, 176.7], [544.4, 176.7], [552.8, 176.7], [561.1, 176.7], [569.4, 176.7], [577.8, 176.7], [586.1, 176.7], [594.4, 176.7], [661.1, 176.7], [669.4, 176.7], [677.8, 176.7], [686.1, 176.7], [694.4, 176.7], [702.8, 176.7], [711.1, 176.7], [719.4, 176.7], [727.8, 176.7], [736.1, 176.7], [744.4, 176.7], [752.8, 176.7], [761.1, 176.7], [769.4, 176.7], [777.8, 176.7], [786.1, 176.7], [794.4, 176.7], [802.8, 176.7], [811.1, 176.7], [819.4, 176.7], [827.8, 176.7], [186.1, 166.7], [194.4, 166.7], [202.8, 166.7], [211.1, 166.7], [219.4, 166.7], [227.8, 166.7], [236.1, 166.7], [244.4, 166.7], [252.8, 166.7], [261.1, 166.7], [269.4, 166.7], [277.8, 166.7], [477.8, 166.7], [486.1, 166.7], [494.4, 166.7], [502.8, 166.7], [511.1, 166.7], [519.4, 166.7], [527.8, 166.7], [536.1, 166.7], [544.4, 166.7], [552.8, 166.7], [561.1, 166.7], [569.4, 166.7], [577.8, 166.7], [586.1, 166.7], [644.4, 166.7], [652.8, 166.7], [661.1, 166.7], [669.4, 166.7], [677.8, 166.7], [686.1, 166.7], [694.4, 166.7], [702.8, 166.7], [711.1, 166.7], [719.4, 166.7], [727.8, 166.7], [736.1, 166.7], [744.4, 166.7], [752.8, 166.7], [761.1, 166.7], [769.4, 166.7], [777.8, 166.7], [786.1, 166.7], [794.4, 166.7], [802.8, 166.7], [811.1, 166.7], [819.4, 166.7], [827.8, 166.7], [836.1, 166.7], [177.8, 156.7], [186.1, 156.7], [194.4, 156.7], [202.8, 156.7], [211.1, 156.7], [219.4, 156.7], [227.8, 156.7], [236.1, 156.7], [244.4, 156.7], [252.8, 156.7], [261.1, 156.7], [269.4, 156.7], [277.8, 156.7], [286.1, 156.7], [477.8, 156.7], [486.1, 156.7], [494.4, 156.7], [502.8, 156.7], [511.1, 156.7], [519.4, 156.7], [527.8, 156.7], [536.1, 156.7], [544.4, 156.7], [552.8, 156.7], [627.8, 156.7], [636.1, 156.7], [644.4, 156.7], [652.8, 156.7], [661.1, 156.7], [669.4, 156.7], [677.8, 156.7], [686.1, 156.7], [694.4, 156.7], [702.8, 156.7], [711.1, 156.7], [719.4, 156.7], [727.8, 156.7], [736.1, 156.7], [744.4, 156.7], [752.8, 156.7], [761.1, 156.7], [769.4, 156.7], [777.8, 156.7], [786.1, 156.7], [794.4, 156.7], [802.8, 156.7], [811.1, 156.7], [819.4, 156.7], [827.8, 156.7], [836.1, 156.7], [869.4, 156.7], [169.4, 146.7], [177.8, 146.7], [186.1, 146.7], [194.4, 146.7], [202.8, 146.7], [211.1, 146.7], [219.4, 146.7], [227.8, 146.7], [236.1, 146.7], [244.4, 146.7], [252.8, 146.7], [261.1, 146.7], [269.4, 146.7], [277.8, 146.7], [286.1, 146.7], [486.1, 146.7], [494.4, 146.7], [502.8, 146.7], [511.1, 146.7], [519.4, 146.7], [527.8, 146.7], [536.1, 146.7], [611.1, 146.7], [619.4, 146.7], [627.8, 146.7], [636.1, 146.7], [644.4, 146.7], [652.8, 146.7], [661.1, 146.7], [669.4, 146.7], [677.8, 146.7], [686.1, 146.7], [694.4, 146.7], [702.8, 146.7], [711.1, 146.7], [719.4, 146.7], [727.8, 146.7], [736.1, 146.7], [744.4, 146.7], [752.8, 146.7], [761.1, 146.7], [769.4, 146.7], [777.8, 146.7], [786.1, 146.7], [794.4, 146.7], [802.8, 146.7], [811.1, 146.7], [819.4, 146.7], [827.8, 146.7], [836.1, 146.7], [852.8, 146.7], [861.1, 146.7], [869.4, 146.7], [877.8, 146.7], [161.1, 136.7], [169.4, 136.7], [177.8, 136.7], [186.1, 136.7], [194.4, 136.7], [202.8, 136.7], [211.1, 136.7], [219.4, 136.7], [227.8, 136.7], [236.1, 136.7], [244.4, 136.7], [252.8, 136.7], [261.1, 136.7], [269.4, 136.7], [277.8, 136.7], [286.1, 136.7], [294.4, 136.7], [494.4, 136.7], [502.8, 136.7], [511.1, 136.7], [519.4, 136.7], [527.8, 136.7], [536.1, 136.7], [544.4, 136.7], [552.8, 136.7], [561.1, 136.7], [586.1, 136.7], [594.4, 136.7], [602.8, 136.7], [611.1, 136.7], [619.4, 136.7], [627.8, 136.7], [636.1, 136.7], [644.4, 136.7], [652.8, 136.7], [661.1, 136.7], [669.4, 136.7], [677.8, 136.7], [686.1, 136.7], [694.4, 136.7], [702.8, 136.7], [711.1, 136.7], [719.4, 136.7], [727.8, 136.7], [736.1, 136.7], [744.4, 136.7], [752.8, 136.7], [761.1, 136.7], [769.4, 136.7], [777.8, 136.7], [786.1, 136.7], [794.4, 136.7], [802.8, 136.7], [811.1, 136.7], [819.4, 136.7], [827.8, 136.7], [836.1, 136.7], [844.4, 136.7], [852.8, 136.7], [861.1, 136.7], [869.4, 136.7], [877.8, 136.7], [886.1, 136.7], [161.1, 126.7], [169.4, 126.7], [177.8, 126.7], [186.1, 126.7], [194.4, 126.7], [202.8, 126.7], [211.1, 126.7], [219.4, 126.7], [227.8, 126.7], [236.1, 126.7], [244.4, 126.7], [252.8, 126.7], [261.1, 126.7], [269.4, 126.7], [277.8, 126.7], [286.1, 126.7], [294.4, 126.7], [302.8, 126.7], [311.1, 126.7], [486.1, 126.7], [494.4, 126.7], [502.8, 126.7], [511.1, 126.7], [519.4, 126.7], [527.8, 126.7], [536.1, 126.7], [544.4, 126.7], [552.8, 126.7], [561.1, 126.7], [569.4, 126.7], [577.8, 126.7], [586.1, 126.7], [594.4, 126.7], [602.8, 126.7], [611.1, 126.7], [619.4, 126.7], [627.8, 126.7], [636.1, 126.7], [644.4, 126.7], [652.8, 126.7], [661.1, 126.7], [669.4, 126.7], [677.8, 126.7], [686.1, 126.7], [694.4, 126.7], [702.8, 126.7], [711.1, 126.7], [719.4, 126.7], [727.8, 126.7], [736.1, 126.7], [744.4, 126.7], [752.8, 126.7], [761.1, 126.7], [769.4, 126.7], [777.8, 126.7], [786.1, 126.7], [794.4, 126.7], [802.8, 126.7], [811.1, 126.7], [819.4, 126.7], [827.8, 126.7], [836.1, 126.7], [844.4, 126.7], [852.8, 126.7], [861.1, 126.7], [869.4, 126.7], [877.8, 126.7], [886.1, 126.7], [894.4, 126.7], [161.1, 116.7], [169.4, 116.7], [177.8, 116.7], [186.1, 116.7], [194.4, 116.7], [202.8, 116.7], [211.1, 116.7], [219.4, 116.7], [227.8, 116.7], [236.1, 116.7], [244.4, 116.7], [252.8, 116.7], [261.1, 116.7], [269.4, 116.7], [277.8, 116.7], [286.1, 116.7], [294.4, 116.7], [302.8, 116.7], [311.1, 116.7], [319.4, 116.7], [327.8, 116.7], [477.8, 116.7], [486.1, 116.7], [494.4, 116.7], [502.8, 116.7], [511.1, 116.7], [519.4, 116.7], [527.8, 116.7], [536.1, 116.7], [544.4, 116.7], [552.8, 116.7], [561.1, 116.7], [569.4, 116.7], [577.8, 116.7], [586.1, 116.7], [594.4, 116.7], [602.8, 116.7], [611.1, 116.7], [619.4, 116.7], [627.8, 116.7], [636.1, 116.7], [644.4, 116.7], [652.8, 116.7], [661.1, 116.7], [669.4, 116.7], [677.8, 116.7], [686.1, 116.7], [694.4, 116.7], [702.8, 116.7], [711.1, 116.7], [719.4, 116.7], [727.8, 116.7], [736.1, 116.7], [744.4, 116.7], [752.8, 116.7], [761.1, 116.7], [769.4, 116.7], [777.8, 116.7], [786.1, 116.7], [794.4, 116.7], [802.8, 116.7], [811.1, 116.7], [819.4, 116.7], [827.8, 116.7], [836.1, 116.7], [844.4, 116.7], [852.8, 116.7], [861.1, 116.7], [869.4, 116.7], [877.8, 116.7], [886.1, 116.7], [152.8, 106.7], [161.1, 106.7], [169.4, 106.7], [177.8, 106.7], [186.1, 106.7], [194.4, 106.7], [202.8, 106.7], [211.1, 106.7], [219.4, 106.7], [227.8, 106.7], [236.1, 106.7], [244.4, 106.7], [252.8, 106.7], [261.1, 106.7], [269.4, 106.7], [277.8, 106.7], [286.1, 106.7], [294.4, 106.7], [302.8, 106.7], [311.1, 106.7], [319.4, 106.7], [327.8, 106.7], [336.1, 106.7], [344.4, 106.7], [477.8, 106.7], [486.1, 106.7], [494.4, 106.7], [502.8, 106.7], [511.1, 106.7], [519.4, 106.7], [527.8, 106.7], [536.1, 106.7], [544.4, 106.7], [552.8, 106.7], [561.1, 106.7], [569.4, 106.7], [577.8, 106.7], [586.1, 106.7], [594.4, 106.7], [602.8, 106.7], [611.1, 106.7], [619.4, 106.7], [627.8, 106.7], [636.1, 106.7], [644.4, 106.7], [652.8, 106.7], [661.1, 106.7], [669.4, 106.7], [677.8, 106.7], [686.1, 106.7], [694.4, 106.7], [702.8, 106.7], [711.1, 106.7], [719.4, 106.7], [727.8, 106.7], [736.1, 106.7], [744.4, 106.7], [752.8, 106.7], [761.1, 106.7], [769.4, 106.7], [777.8, 106.7], [786.1, 106.7], [794.4, 106.7], [802.8, 106.7], [811.1, 106.7], [819.4, 106.7], [827.8, 106.7], [836.1, 106.7], [844.4, 106.7], [852.8, 106.7], [861.1, 106.7], [869.4, 106.7], [877.8, 106.7], [886.1, 106.7], [894.4, 106.7], [152.8, 96.7], [161.1, 96.7], [169.4, 96.7], [177.8, 96.7], [186.1, 96.7], [194.4, 96.7], [202.8, 96.7], [211.1, 96.7], [219.4, 96.7], [227.8, 96.7], [236.1, 96.7], [244.4, 96.7], [252.8, 96.7], [261.1, 96.7], [269.4, 96.7], [277.8, 96.7], [286.1, 96.7], [294.4, 96.7], [302.8, 96.7], [311.1, 96.7], [319.4, 96.7], [327.8, 96.7], [336.1, 96.7], [486.1, 96.7], [494.4, 96.7], [502.8, 96.7], [511.1, 96.7], [519.4, 96.7], [527.8, 96.7], [536.1, 96.7], [544.4, 96.7], [552.8, 96.7], [561.1, 96.7], [569.4, 96.7], [577.8, 96.7], [586.1, 96.7], [594.4, 96.7], [602.8, 96.7], [611.1, 96.7], [619.4, 96.7], [627.8, 96.7], [636.1, 96.7], [644.4, 96.7], [652.8, 96.7], [661.1, 96.7], [669.4, 96.7], [677.8, 96.7], [686.1, 96.7], [694.4, 96.7], [702.8, 96.7], [711.1, 96.7], [719.4, 96.7], [727.8, 96.7], [736.1, 96.7], [744.4, 96.7], [752.8, 96.7], [761.1, 96.7], [769.4, 96.7], [777.8, 96.7], [786.1, 96.7], [794.4, 96.7], [802.8, 96.7], [811.1, 96.7], [819.4, 96.7], [827.8, 96.7], [836.1, 96.7], [844.4, 96.7], [852.8, 96.7], [861.1, 96.7], [869.4, 96.7], [877.8, 96.7], [886.1, 96.7], [894.4, 96.7], [902.8, 96.7], [911.1, 96.7], [919.4, 96.7], [144.4, 86.7], [152.8, 86.7], [161.1, 86.7], [169.4, 86.7], [177.8, 86.7], [186.1, 86.7], [194.4, 86.7], [202.8, 86.7], [211.1, 86.7], [219.4, 86.7], [227.8, 86.7], [236.1, 86.7], [244.4, 86.7], [252.8, 86.7], [261.1, 86.7], [269.4, 86.7], [277.8, 86.7], [286.1, 86.7], [294.4, 86.7], [302.8, 86.7], [311.1, 86.7], [319.4, 86.7], [327.8, 86.7], [494.4, 86.7], [502.8, 86.7], [511.1, 86.7], [519.4, 86.7], [527.8, 86.7], [536.1, 86.7], [544.4, 86.7], [552.8, 86.7], [561.1, 86.7], [569.4, 86.7], [577.8, 86.7], [586.1, 86.7], [594.4, 86.7], [602.8, 86.7], [611.1, 86.7], [619.4, 86.7], [627.8, 86.7], [636.1, 86.7], [644.4, 86.7], [652.8, 86.7], [661.1, 86.7], [669.4, 86.7], [677.8, 86.7], [686.1, 86.7], [694.4, 86.7], [702.8, 86.7], [711.1, 86.7], [719.4, 86.7], [727.8, 86.7], [736.1, 86.7], [744.4, 86.7], [752.8, 86.7], [761.1, 86.7], [769.4, 86.7], [777.8, 86.7], [786.1, 86.7], [794.4, 86.7], [802.8, 86.7], [811.1, 86.7], [819.4, 86.7], [827.8, 86.7], [836.1, 86.7], [844.4, 86.7], [852.8, 86.7], [861.1, 86.7], [869.4, 86.7], [877.8, 86.7], [886.1, 86.7], [894.4, 86.7], [902.8, 86.7], [911.1, 86.7], [919.4, 86.7], [927.8, 86.7], [936.1, 86.7], [944.4, 86.7], [136.1, 76.7], [144.4, 76.7], [152.8, 76.7], [161.1, 76.7], [169.4, 76.7], [177.8, 76.7], [186.1, 76.7], [194.4, 76.7], [202.8, 76.7], [211.1, 76.7], [219.4, 76.7], [227.8, 76.7], [236.1, 76.7], [244.4, 76.7], [252.8, 76.7], [261.1, 76.7], [269.4, 76.7], [277.8, 76.7], [286.1, 76.7], [294.4, 76.7], [302.8, 76.7], [311.1, 76.7], [319.4, 76.7], [494.4, 76.7], [502.8, 76.7], [511.1, 76.7], [519.4, 76.7], [527.8, 76.7], [536.1, 76.7], [544.4, 76.7], [552.8, 76.7], [561.1, 76.7], [569.4, 76.7], [577.8, 76.7], [586.1, 76.7], [594.4, 76.7], [602.8, 76.7], [611.1, 76.7], [619.4, 76.7], [627.8, 76.7], [636.1, 76.7], [644.4, 76.7], [652.8, 76.7], [661.1, 76.7], [669.4, 76.7], [677.8, 76.7], [686.1, 76.7], [694.4, 76.7], [702.8, 76.7], [711.1, 76.7], [719.4, 76.7], [727.8, 76.7], [736.1, 76.7], [744.4, 76.7], [752.8, 76.7], [761.1, 76.7], [769.4, 76.7], [777.8, 76.7], [786.1, 76.7], [794.4, 76.7], [802.8, 76.7], [811.1, 76.7], [819.4, 76.7], [827.8, 76.7], [836.1, 76.7], [844.4, 76.7], [852.8, 76.7], [861.1, 76.7], [869.4, 76.7], [877.8, 76.7], [886.1, 76.7], [894.4, 76.7], [902.8, 76.7], [911.1, 76.7], [919.4, 76.7], [927.8, 76.7], [936.1, 76.7], [944.4, 76.7], [952.8, 76.7], [961.1, 76.7], [969.4, 76.7], [977.8, 76.7], [986.1, 76.7], [44.4, 66.7], [52.8, 66.7], [61.1, 66.7], [69.4, 66.7], [77.8, 66.7], [86.1, 66.7], [94.4, 66.7], [102.8, 66.7], [111.1, 66.7], [119.4, 66.7], [127.8, 66.7], [136.1, 66.7], [144.4, 66.7], [152.8, 66.7], [161.1, 66.7], [169.4, 66.7], [177.8, 66.7], [186.1, 66.7], [194.4, 66.7], [202.8, 66.7], [211.1, 66.7], [219.4, 66.7], [227.8, 66.7], [236.1, 66.7], [244.4, 66.7], [252.8, 66.7], [261.1, 66.7], [269.4, 66.7], [277.8, 66.7], [286.1, 66.7], [294.4, 66.7], [302.8, 66.7], [311.1, 66.7], [511.1, 66.7], [519.4, 66.7], [527.8, 66.7], [536.1, 66.7], [544.4, 66.7], [552.8, 66.7], [561.1, 66.7], [569.4, 66.7], [577.8, 66.7], [586.1, 66.7], [594.4, 66.7], [602.8, 66.7], [611.1, 66.7], [619.4, 66.7], [627.8, 66.7], [636.1, 66.7], [644.4, 66.7], [652.8, 66.7], [661.1, 66.7], [669.4, 66.7], [677.8, 66.7], [686.1, 66.7], [694.4, 66.7], [702.8, 66.7], [711.1, 66.7], [719.4, 66.7], [727.8, 66.7], [736.1, 66.7], [744.4, 66.7], [752.8, 66.7], [761.1, 66.7], [769.4, 66.7], [777.8, 66.7], [786.1, 66.7], [794.4, 66.7], [802.8, 66.7], [811.1, 66.7], [819.4, 66.7], [827.8, 66.7], [836.1, 66.7], [844.4, 66.7], [852.8, 66.7], [861.1, 66.7], [869.4, 66.7], [877.8, 66.7], [886.1, 66.7], [894.4, 66.7], [902.8, 66.7], [911.1, 66.7], [919.4, 66.7], [927.8, 66.7], [936.1, 66.7], [944.4, 66.7], [952.8, 66.7], [961.1, 66.7], [969.4, 66.7], [977.8, 66.7], [986.1, 66.7], [44.4, 56.7], [52.8, 56.7], [61.1, 56.7], [69.4, 56.7], [77.8, 56.7], [86.1, 56.7], [94.4, 56.7], [102.8, 56.7], [111.1, 56.7], [119.4, 56.7], [127.8, 56.7], [136.1, 56.7], [144.4, 56.7], [152.8, 56.7], [161.1, 56.7], [169.4, 56.7], [177.8, 56.7], [186.1, 56.7], [194.4, 56.7], [202.8, 56.7], [211.1, 56.7], [219.4, 56.7], [227.8, 56.7], [236.1, 56.7], [244.4, 56.7], [252.8, 56.7], [261.1, 56.7], [269.4, 56.7], [277.8, 56.7], [286.1, 56.7], [294.4, 56.7], [302.8, 56.7], [361.1, 56.7], [369.4, 56.7], [377.8, 56.7], [386.1, 56.7], [444.4, 56.7], [452.8, 56.7], [527.8, 56.7], [536.1, 56.7], [544.4, 56.7], [552.8, 56.7], [561.1, 56.7], [569.4, 56.7], [577.8, 56.7], [586.1, 56.7], [594.4, 56.7], [602.8, 56.7], [611.1, 56.7], [619.4, 56.7], [627.8, 56.7], [636.1, 56.7], [644.4, 56.7], [652.8, 56.7], [661.1, 56.7], [669.4, 56.7], [677.8, 56.7], [686.1, 56.7], [694.4, 56.7], [702.8, 56.7], [711.1, 56.7], [719.4, 56.7], [727.8, 56.7], [736.1, 56.7], [744.4, 56.7], [752.8, 56.7], [761.1, 56.7], [769.4, 56.7], [777.8, 56.7], [786.1, 56.7], [794.4, 56.7], [802.8, 56.7], [811.1, 56.7], [819.4, 56.7], [827.8, 56.7], [836.1, 56.7], [844.4, 56.7], [852.8, 56.7], [861.1, 56.7], [869.4, 56.7], [877.8, 56.7], [886.1, 56.7], [894.4, 56.7], [902.8, 56.7], [911.1, 56.7], [919.4, 56.7], [927.8, 56.7], [936.1, 56.7], [944.4, 56.7], [952.8, 56.7], [961.1, 56.7], [969.4, 56.7], [977.8, 56.7], [986.1, 56.7], [44.4, 46.7], [52.8, 46.7], [61.1, 46.7], [69.4, 46.7], [77.8, 46.7], [86.1, 46.7], [94.4, 46.7], [102.8, 46.7], [111.1, 46.7], [119.4, 46.7], [127.8, 46.7], [136.1, 46.7], [144.4, 46.7], [152.8, 46.7], [161.1, 46.7], [169.4, 46.7], [177.8, 46.7], [186.1, 46.7], [194.4, 46.7], [202.8, 46.7], [211.1, 46.7], [219.4, 46.7], [227.8, 46.7], [236.1, 46.7], [244.4, 46.7], [252.8, 46.7], [261.1, 46.7], [269.4, 46.7], [277.8, 46.7], [286.1, 46.7], [294.4, 46.7], [352.8, 46.7], [361.1, 46.7], [369.4, 46.7], [377.8, 46.7], [386.1, 46.7], [394.4, 46.7], [544.4, 46.7], [552.8, 46.7], [561.1, 46.7], [569.4, 46.7], [577.8, 46.7], [586.1, 46.7], [594.4, 46.7], [602.8, 46.7], [611.1, 46.7], [619.4, 46.7], [627.8, 46.7], [636.1, 46.7], [644.4, 46.7], [652.8, 46.7], [661.1, 46.7], [669.4, 46.7], [677.8, 46.7], [686.1, 46.7], [694.4, 46.7], [702.8, 46.7], [711.1, 46.7], [719.4, 46.7], [727.8, 46.7], [736.1, 46.7], [744.4, 46.7], [752.8, 46.7], [761.1, 46.7], [769.4, 46.7], [777.8, 46.7], [786.1, 46.7], [794.4, 46.7], [802.8, 46.7], [811.1, 46.7], [819.4, 46.7], [827.8, 46.7], [836.1, 46.7], [844.4, 46.7], [852.8, 46.7], [861.1, 46.7], [869.4, 46.7], [877.8, 46.7], [886.1, 46.7], [894.4, 46.7], [902.8, 46.7], [911.1, 46.7], [919.4, 46.7], [927.8, 46.7], [936.1, 46.7], [944.4, 46.7], [952.8, 46.7], [961.1, 46.7], [36.1, 36.7], [44.4, 36.7], [52.8, 36.7], [61.1, 36.7], [69.4, 36.7], [77.8, 36.7], [86.1, 36.7], [94.4, 36.7], [102.8, 36.7], [111.1, 36.7], [119.4, 36.7], [127.8, 36.7], [136.1, 36.7], [144.4, 36.7], [152.8, 36.7], [161.1, 36.7], [169.4, 36.7], [177.8, 36.7], [186.1, 36.7], [194.4, 36.7], [202.8, 36.7], [211.1, 36.7], [219.4, 36.7], [227.8, 36.7], [236.1, 36.7], [244.4, 36.7], [252.8, 36.7], [261.1, 36.7], [269.4, 36.7], [277.8, 36.7], [286.1, 36.7], [344.4, 36.7], [352.8, 36.7], [361.1, 36.7], [369.4, 36.7], [377.8, 36.7], [386.1, 36.7], [394.4, 36.7], [402.8, 36.7], [577.8, 36.7], [586.1, 36.7], [594.4, 36.7], [602.8, 36.7], [611.1, 36.7], [619.4, 36.7], [627.8, 36.7], [636.1, 36.7], [644.4, 36.7], [652.8, 36.7], [661.1, 36.7], [669.4, 36.7], [677.8, 36.7], [686.1, 36.7], [694.4, 36.7], [702.8, 36.7], [711.1, 36.7], [719.4, 36.7], [727.8, 36.7], [736.1, 36.7], [744.4, 36.7], [752.8, 36.7], [761.1, 36.7], [769.4, 36.7], [777.8, 36.7], [786.1, 36.7], [794.4, 36.7], [802.8, 36.7], [811.1, 36.7], [819.4, 36.7], [827.8, 36.7], [836.1, 36.7], [844.4, 36.7], [852.8, 36.7], [861.1, 36.7], [869.4, 36.7], [877.8, 36.7], [886.1, 36.7], [894.4, 36.7], [902.8, 36.7], [911.1, 36.7], [919.4, 36.7], [927.8, 36.7], [936.1, 36.7], [944.4, 36.7], [344.4, 26.7], [352.8, 26.7], [361.1, 26.7], [369.4, 26.7], [377.8, 26.7], [386.1, 26.7], [394.4, 26.7], [402.8, 26.7], [411.1, 26.7], [419.4, 26.7], [652.8, 26.7], [661.1, 26.7], [669.4, 26.7], [677.8, 26.7], [686.1, 26.7], [694.4, 26.7], [702.8, 26.7], [711.1, 26.7], [719.4, 26.7], [727.8, 26.7], [736.1, 26.7], [744.4, 26.7], [752.8, 26.7], [761.1, 26.7], [769.4, 26.7], [777.8, 26.7], [786.1, 26.7], [794.4, 26.7], [802.8, 26.7], [811.1, 26.7], [819.4, 26.7], [827.8, 26.7], [836.1, 26.7], [844.4, 26.7], [852.8, 26.7], [861.1, 26.7], [869.4, 26.7], [877.8, 26.7], [886.1, 26.7], [352.8, 16.7], [361.1, 16.7], [369.4, 16.7], [377.8, 16.7], [386.1, 16.7], [394.4, 16.7], [402.8, 16.7], [411.1, 16.7], [419.4, 16.7], [427.8, 16.7], [761.1, 16.7], [769.4, 16.7], [777.8, 16.7], [786.1, 16.7], [794.4, 16.7], [802.8, 16.7], [811.1, 16.7], [819.4, 16.7], [827.8, 16.7], [836.1, 16.7], [844.4, 16.7], [852.8, 16.7], [361.1, 6.7], [369.4, 6.7], [377.8, 6.7], [386.1, 6.7], [394.4, 6.7], [402.8, 6.7], [411.1, 6.7], [419.4, 6.7], [427.8, 6.7]];
+var GEO_W=1000, GEO_H=460, LAT_TOP=80, LAT_BOT=-58;
+function geoX(lng){return (lng+180)/360*GEO_W;}
+function geoY(lat){return (LAT_TOP-lat)/(LAT_TOP-LAT_BOT)*GEO_H;}
+function renderWorldDots(svg){
+  var h='';WORLD_DOTS.forEach(function(d){h+='<circle cx="'+d[0]+'" cy="'+d[1]+'" r="1.8" class="land-dot"/>';});
+  svg.innerHTML += h;
+}
+
+</script>
+<script>
+(function(){
+  function geoInit(){ window.DeepSeaClassicGeo.render({svg:document.getElementById('geoHomeMap'),records:COMPOUND_GEO,summary:LOCATIONS_SUMMARY,landAsset:'assets/img/maps/world-land-only-v2.svg',compoundBase:'1-Compounds/',locationBase:'pages/location-detail.html?loc='}); }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',geoInit);
+  } else { geoInit(); }
+})();
+</script>
+</body></html>

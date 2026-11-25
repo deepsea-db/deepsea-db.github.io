@@ -1,0 +1,10 @@
+/* Typeset result subscripts without changing the surrounding line height. */
+.assay-result sub,.assay-browser-result sub,.assay-preview-result sub,
+.assay-record-context sub,.target-assay-result sub,.target-assay-system sub,
+.connection-result-value sub,.rcdb-original-result sub,.evidence-state sub,
+.assay-endpoint-tag sub,.case-display-result sub,.case-reported-result sub{
+ font-size:75%;line-height:0;vertical-align:sub
+}
+.scientific-equilibrium-symbol{font-style:italic}
+.scientific-equilibrium-symbol+sub{font-style:normal}
+.result-value sub{font-size:75%;line-height:0;vertical-align:sub}

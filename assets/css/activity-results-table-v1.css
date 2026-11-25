@@ -1,0 +1,41 @@
+/* Shared evidence tables only; all other page typography stays unchanged. */
+.activity-results-table caption.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;padding:0;border:0}
+.activity-results-table{width:100%;min-width:900px;table-layout:fixed;border-collapse:collapse;background:#fff}
+.activity-results-table .activity-col-compound{width:30%}
+.activity-results-table .activity-col-system{width:25%}
+.activity-results-table .activity-col-display{width:27%}
+.activity-results-table .activity-col-reference{width:18%}
+.activity-results-table th{padding:16px 14px;background:#edf5f8;color:#234253;text-align:left;font-size:14px;font-weight:650;line-height:1.45;vertical-align:middle;border-bottom:1px solid #dbe7ee}
+.activity-results-table td{padding:17px 14px;color:#3a5060;font-size:14px;line-height:1.55;vertical-align:top;border-bottom:1px solid #e7eef3;overflow-wrap:anywhere;background:#fff}
+.activity-results-table tbody tr:hover td{background:#f9fcfd}
+.activity-results-table .activity-compound{display:flex;gap:12px;align-items:flex-start}
+.activity-results-table .activity-structure{display:flex;flex:0 0 56px;width:56px;height:56px;align-items:center;justify-content:center;background:#fff;border:1px solid #e7eef3;border-radius:5px;overflow:hidden}
+.activity-results-table .activity-structure img{display:block;width:100%;height:100%;object-fit:contain}
+.activity-results-table .activity-structure-missing{color:#647c8d;font-size:10px;text-align:center;line-height:1.3}
+.activity-results-table .activity-compound-copy{min-width:0}
+.activity-results-table .activity-compound-name{font-weight:600}
+.activity-results-table .activity-system{display:block;font-size:14px;font-weight:600}
+.activity-results-table .activity-endpoint{display:block;margin-top:4px;color:#607b8b;font-size:12px}
+.activity-results-table .activity-original-value{font-size:15px;font-weight:650;color:#173d52;font-variant-numeric:tabular-nums;white-space:pre-wrap;line-height:1.6}
+.activity-results-table .activity-tags{display:flex;flex-wrap:wrap;gap:4px;margin:7px 0 5px;line-height:1.4}
+.activity-results-table .activity-tags .tag{font-size:10px;padding:2px 5px;margin:0}
+.activity-results-table .activity-classification-state,.activity-results-table .activity-structure-state{display:block;flex-basis:100%;font-size:10px;color:#647c8d}
+.activity-results-table .activity-compare-link{font-size:11px}
+.activity-results-table .activity-source-link{font-size:12px}
+.activity-results-table .activity-condition-summary{display:flex;flex-wrap:wrap;gap:3px 9px;align-items:baseline;margin-top:6px;font-size:12px;color:#607b8b}
+.activity-results-table .activity-condition-summary span+span:before{content:'·';margin-right:9px;color:#8396a3}
+.activity-results-table details{margin-top:8px;color:#526e7f;font-size:12px;line-height:1.55}
+.activity-results-table details summary{cursor:pointer;font-size:12px;color:#47738c}
+.activity-results-table details p{margin:8px 0;font-size:12px;line-height:1.6}
+.activity-results-table sub{font-size:75%;line-height:0}
+.activity-results-table .warn{margin-top:7px;display:inline-block;max-width:100%;font-size:11px;white-space:normal}
+
+/* Assay-system details share the same result table and retain their own filters. */
+body[data-site-view="system"] .activity-results-table .assay-browser-record{padding:0;margin:0}
+body[data-site-view="system"] .activity-results-table .assay-record-context{font-size:12px;margin:4px 0;color:#607b8b}
+body[data-site-view="system"] .activity-results-table .assay-browser-conditions{font-size:12px;margin:6px 0 0;line-height:1.6}
+body[data-site-view="system"] .activity-results-table .assay-browser-result{font-size:15px;line-height:1.6}
+body[data-site-view="system"] .activity-results-table .assay-record-state{display:block;font-size:11px;margin-top:7px}
+body[data-site-view="system"] .activity-results-table .assay-record-links{font-size:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+body[data-site-view="system"] .activity-results-table .assay-record-links>a:last-child{margin-left:0}
+body[data-site-view="system"] .activity-results-table .assay-record-notes{margin:8px 0 0;font-size:12px}
